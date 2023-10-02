@@ -1,5 +1,5 @@
 # Projeto3-moedaEstudantil
-Nesse projeto temos o objetivo de fazer um sistema de aluguel de carros usando a linguagem JavaScript.
+Nesse projeto temos o objetivo de fazer um sistema para estimular o reconhecimento do mérito estudantil através de uma moeda virtual usando a linguagem JavaScript.
 
 ## Alunos integrantes da equipe
 
