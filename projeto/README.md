@@ -7,12 +7,12 @@ Os artefatos do projeto estão separados da seguinte forma:
 * `/Caso de Uso`
 	* **Sistema de Moeda Estudantil.asta**: Projeto feito no Astah do diagrama de casos de uso.
    
-   ![UML - Diagrama de casos de uso](projeto/Imagens/Sistema%20de%20Moeda%20Estudantil.png)
+   ![UML - Diagrama de casos de uso](Imagens/Sistema%20de%20Moeda%20Estudantil.png)
 
 * `/Diagrama de Classe`
 	* **Diagrama de classe.asta**: Projeto feito no Astah do diagrama de casos de uso.
    
-   ![UML - Diagrama de classes](projeto/Imagens/Diagrama%20de%20Classe.png)
+   ![UML - Diagrama de classes](Imagens/Diagrama%20de%20Classe.png)
 
 * `/Historia de usuário`
 	* **backlog.md**: Descrição das histórias de usuário de acordo com os casos de uso.
