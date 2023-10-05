@@ -14,8 +14,8 @@ app.use(express.static("public"))
 const connection = mysql.createConnection({
     host: "localhost",
     user: "root",
-    password: "coxinha",
-    database: "Goiaba",
+    password: "",
+    database: "moedaEstudantil",
 });
 
 //INICIALIZATION CONNECTION WITH DATABASE
@@ -51,3 +51,22 @@ app.post("/cadastro", function (req, res) {
       }
     );
 });
+
+
+app.post("/updateAluno", function(req, res){
+  connection.query(`UPDATE aluno SET nome = "${req.body.nome}", cpf = "${req.body.cpf}", email = "${req.body.email}", endereco = "${req.body.endereco}", instituicao = "${req.body.instituicao}", curso = "${req.body.curso}", moeda = ${req.body.moeda} WHERE id = 1;`,
+  (err, rows, fields) => {
+    if(err) {
+      return res.json({
+        tipo: "Erro de alteração",
+        mensagem: err
+      })
+    }
+    
+    return res.json({
+      tipo: "Sucesso!",
+      mensagem: "Usuario alterado",
+      s: "funcionando"
+    })
+  })
+})
