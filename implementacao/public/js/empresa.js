@@ -1,24 +1,21 @@
-function updateAluno() {
+function updateEmpresa() {
     let id = sessionStorage.getItem("usuario")
     if(id){
         id = JSON.parse(id).id
     }
     
-    let nome, cpf, email, endereco, instituicao, curso, senha;
+    let nome, cnpj, email, senha;
     
     nome = document.getElementById("nome").value
-    cpf = document.getElementById("cpf").value
+    cnpj = document.getElementById("cnpj").value
     email = document.getElementById("email").value
     senha = document.getElementById("senha").value
-    endereco = document.getElementById("endereco").value
-    instituicao = document.getElementById("instituicao").value
-    curso = document.getElementById("curso").value
 
-    fetch("http://localhost:3000/updateAluno", {
+    fetch("http://localhost:3000/updateEmpresa", {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-            id, nome, cpf, email, endereco, instituicao, curso, senha
+            id, nome, cnpj, email, senha
         })
     }).then(function(res) {
         res.json().then(function(data) {
@@ -30,15 +27,15 @@ function updateAluno() {
     })
 }
 
-function viewAluno() {
+function viewEmpresa() {
     let id = sessionStorage.getItem("usuario")
     if(id){
         id = JSON.parse(id).id
     }
 
-    let nome = "", cpf = "", email = "", endereco = "", instituicao = "", curso = "", moeda = "", senha = "";
+    let nome = "", cnpj = "", email = "", senha = "";
 
-    fetch("http://localhost:3000/viewAluno", {
+    fetch("http://localhost:3000/viewEmpresa", {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -46,21 +43,17 @@ function viewAluno() {
         })
     }).then(function(res) {
         res.json().then(function(data) {
-            if(!data.aluno){
+            if(!data.empresa){
                 window.alert(`${data.tipo} - ${data.mensagem}`)
                 window.location.reload();
             } else {
-                nome = data.aluno.nome, cpf = data.aluno.cpf, email = data.aluno.email, senha = data.aluno.senha, endereco = data.aluno.endereco, instituicao = data.aluno.instituicao, curso = data.aluno.curso, moeda = data.aluno.moeda;
+                nome = data.empresa.nome, cnpj = data.empresa.cnpj, email = data.empresa.email, senha = data.empresa.senha;
             }
 
             document.getElementById("nome").value = nome
-            document.getElementById("cpf").value = cpf
+            document.getElementById("cnpj").value = cnpj
             document.getElementById("email").value = email
             document.getElementById("senha").value = senha
-            document.getElementById("endereco").value = endereco
-            document.getElementById("instituicao").value = instituicao
-            document.getElementById("curso").value = curso
-            document.getElementById("moeda").value = moeda
         })
     })
 }

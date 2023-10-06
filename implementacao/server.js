@@ -54,7 +54,7 @@ app.post("/cadastro", function (req, res) {
 
 
 app.post("/updateAluno", function(req, res){
-  connection.query(`UPDATE aluno SET nome = "${req.body.nome}", cpf = "${req.body.cpf}", email = "${req.body.email}", endereco = "${req.body.endereco}", instituicao = "${req.body.instituicao}", curso = "${req.body.curso}" WHERE id = ${req.body.id};`,
+  connection.query(`UPDATE aluno SET nome = "${req.body.nome}", cpf = "${req.body.cpf}", email = "${req.body.email}", senha = "${req.body.senha}", endereco = "${req.body.endereco}", instituicao = "${req.body.instituicao}", curso = "${req.body.curso}" WHERE id = ${req.body.id};`,
   (err, rows, fields) => {
     if(err) {
       return res.json({
@@ -84,7 +84,45 @@ app.post("/viewAluno", function(req, res){
     
     return res.json({
       aluno: {
-        nome: rows[0].nome, cpf: rows[0].cpf, email: rows[0].email, endereco: rows[0].endereco, instituicao: rows[0].instituicao, curso: rows[0].curso, moeda: rows[0].moeda
+        nome: rows[0].nome, cpf: rows[0].cpf, email: rows[0].email, senha: rows[0].senha, endereco: rows[0].endereco, instituicao: rows[0].instituicao, curso: rows[0].curso, moeda: rows[0].moeda
+      }
+    })
+  })
+})
+
+
+app.post("/updateEmpresa", function(req, res){
+  connection.query(`UPDATE empresa SET nome = "${req.body.nome}", cnpj = "${req.body.cnpj}", email = "${req.body.email}", senha = "${req.body.senha}";`,
+  (err, rows, fields) => {
+    if(err) {
+      return res.json({
+        tipo: "Erro de alteração",
+        mensagem: err
+      })
+    }
+    
+    return res.json({
+      tipo: "Sucesso!",
+      mensagem: "Usuario alterado",
+      s: "funcionando"
+    })
+  })
+})
+
+
+app.post("/viewEmpresa", function(req, res){
+  connection.query(`SELECT * FROM empresa WHERE id = ${req.body.id};`,
+  (err, rows, fields) => {
+    if(err) {
+      return res.json({
+        tipo: "Erro ao retornar dados da empresa",
+        mensagem: err
+      })
+    }
+    
+    return res.json({
+      empresa: {
+        nome: rows[0].nome, cnpj: rows[0].cnpj, email: rows[0].email, senha: rows[0].senha
       }
     })
   })
