@@ -54,7 +54,7 @@ app.post("/cadastro", function (req, res) {
 
 
 app.post("/updateAluno", function(req, res){
-  connection.query(`UPDATE aluno SET nome = "${req.body.nome}", cpf = "${req.body.cpf}", email = "${req.body.email}", endereco = "${req.body.endereco}", instituicao = "${req.body.instituicao}", curso = "${req.body.curso}", moeda = ${req.body.moeda} WHERE id = 1;`,
+  connection.query(`UPDATE aluno SET nome = "${req.body.nome}", cpf = "${req.body.cpf}", email = "${req.body.email}", endereco = "${req.body.endereco}", instituicao = "${req.body.instituicao}", curso = "${req.body.curso}" WHERE id = ${req.body.id};`,
   (err, rows, fields) => {
     if(err) {
       return res.json({
