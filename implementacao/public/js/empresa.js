@@ -1,11 +1,11 @@
 function updateEmpresa() {
     let id = sessionStorage.getItem("usuario")
-    if(id){
+    if (id) {
         id = JSON.parse(id).id
     }
-    
+
     let nome, cnpj, email, senha;
-    
+
     nome = document.getElementById("nome").value
     cnpj = document.getElementById("cnpj").value
     email = document.getElementById("email").value
@@ -17,10 +17,10 @@ function updateEmpresa() {
         body: JSON.stringify({
             id, nome, cnpj, email, senha
         })
-    }).then(function(res) {
-        res.json().then(function(data) {
+    }).then(function (res) {
+        res.json().then(function (data) {
             window.alert(`${data.tipo} - ${data.mensagem}`)
-            if(data.s){
+            if (data.s) {
                 window.location.reload();
             }
         })
@@ -29,7 +29,7 @@ function updateEmpresa() {
 
 function viewEmpresa() {
     let id = sessionStorage.getItem("usuario")
-    if(id){
+    if (id) {
         id = JSON.parse(id).id
     }
 
@@ -41,9 +41,9 @@ function viewEmpresa() {
         body: JSON.stringify({
             id
         })
-    }).then(function(res) {
-        res.json().then(function(data) {
-            if(!data.empresa){
+    }).then(function (res) {
+        res.json().then(function (data) {
+            if (!data.empresa) {
                 window.alert(`${data.tipo} - ${data.mensagem}`)
                 window.location.reload();
             } else {
@@ -54,6 +54,28 @@ function viewEmpresa() {
             document.getElementById("cnpj").value = cnpj
             document.getElementById("email").value = email
             document.getElementById("senha").value = senha
+        })
+    })
+}
+
+function deletarEmpresa() {
+    let id = sessionStorage.getItem("empresa")
+    if (id) {
+        id = JSON.parse(id).id
+    }
+
+    fetch("http://localhost:3000/deleteEmpresa", {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            id
+        })
+    }).then(function (res) {
+        res.json().then(function (data) {
+            if (data.tipo) {
+                window.alert(`${data.tipo} - ${data.mensagem}`)
+                window.location.assign("../public/views/index.html")
+            }
         })
     })
 }

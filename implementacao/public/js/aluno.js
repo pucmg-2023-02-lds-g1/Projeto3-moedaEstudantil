@@ -64,3 +64,25 @@ function viewAluno() {
         })
     })
 }
+
+function deletarAluno() {
+    let id = sessionStorage.getItem("usuario")
+    if (id) {
+        id = JSON.parse(id).id
+    }
+
+    fetch("http://localhost:3000/deleteAluno", {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            id
+        })
+    }).then(function (res) {
+        res.json().then(function (data) {
+            if (data.tipo) {
+                window.alert(`${data.tipo} - ${data.mensagem}`)
+                window.location.assign("../public/views/index.html")
+            }
+        })
+    })
+}
