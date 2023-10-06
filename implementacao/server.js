@@ -129,7 +129,7 @@ app.post("/viewEmpresa", function(req, res){
 })
 
 app.post("/deleteEmpresa", function(req, res){
-  connection.query(`DELETE from empresa WHERE id = ${req.body.id};`,
+  connection.query(`DELETE * from empresa WHERE id = ${req.body.id};`,
   (err, rows, fields) => {
     if(err) {
       return res.json({
@@ -147,7 +147,7 @@ app.post("/deleteEmpresa", function(req, res){
 })
 
 app.post("/deleteAluno", function(req, res){
-  connection.query(`DELETE from aluno WHERE id = ${req.body.id};`,
+  connection.query(`DELETE * from aluno WHERE id = ${req.body.id};`,
   (err, rows, fields) => {
     if(err) {
       return res.json({
@@ -158,7 +158,7 @@ app.post("/deleteAluno", function(req, res){
     
     return res.json({
       tipo: "Sucesso!",
-      mensagem: "Aluno deletada com sucesso",
+      mensagem: "Aluno deletado com sucesso",
       s: "funcionando"
     })
   })
