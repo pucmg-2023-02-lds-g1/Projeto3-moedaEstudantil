@@ -59,7 +59,7 @@ function viewEmpresa() {
 }
 
 function deletarEmpresa() {
-    let id = sessionStorage.getItem("empresa")
+    let id = sessionStorage.getItem("usuario")
     if (id) {
         id = JSON.parse(id).id
     }
