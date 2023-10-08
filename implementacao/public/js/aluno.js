@@ -86,3 +86,29 @@ function deletarAluno() {
         })
     })
 }
+
+function cadastrarAluno() {
+    
+    let nome = document.getElementById("nome").value
+    let cpf = document.getElementById("cpf").value
+    let email = document.getElementById("email").value
+    let senha = document.getElementById("senha").value
+    let endereco = document.getElementById("endereco").value
+    let instituicao = document.getElementById("instituicao").value
+    let curso = document.getElementById("curso").value
+
+    fetch("http://localhost:3000/cadastrarAluno", {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            id, nome, cpf, email, endereco, instituicao, curso, senha
+        })
+    }).then(function(res) {
+        res.json().then(function(data) {
+            window.alert(`${data.tipo} - ${data.mensagem}`)
+            if(data.s){
+                window.location.reload();
+            }
+        })
+    })
+}

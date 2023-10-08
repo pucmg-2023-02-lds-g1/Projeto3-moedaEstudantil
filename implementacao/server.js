@@ -163,3 +163,22 @@ app.post("/deleteAluno", function(req, res){
     })
   })
 })
+
+
+app.post("/cadastrarAluno", function(req, res){
+  connection.query(`INSERT INTO aluno VALUES = "${req.body.nome}", "${req.body.cpf}", "${req.body.email}", "${req.body.senha}", "${req.body.endereco}", "${req.body.instituicao}", "${req.body.curso}";`,
+  (err, rows, fields) => {
+    if(err) {
+      return res.json({
+        tipo: "Erro de alteração",
+        mensagem: err
+      })
+    }
+    
+    return res.json({
+      tipo: "Sucesso!",
+      mensagem: "Usuario alterado",
+      s: "funcionando"
+    })
+  })
+})

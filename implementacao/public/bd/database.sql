@@ -72,7 +72,29 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Aluno` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+-- -----------------------------------------------------
+-- Table `mydb`.`Professor`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `mydb`.`Professor` ;
 
+CREATE TABLE IF NOT EXISTS `mydb`.`Professor` (
+  `idProfessor` INT NOT NULL AUTO_INCREMENT,
+  `nome` CHAR NOT NULL,
+  `cpf` VARCHAR(45) NOT NULL,
+  `email` VARCHAR(45) NOT NULL,
+  `senha` VARCHAR(45) NOT NULL,
+  `rg` VARCHAR(45) NOT NULL,
+  `endereco` VARCHAR(500) NOT NULL,
+  `moeda` INT NULL,
+  `Instituicao_id` INT NOT NULL,
+  PRIMARY KEY (`idProfessor`, `Instituicao_id`),
+  INDEX `fk_Professor_Instituicao1_idx` (`Instituicao_id` ASC) VISIBLE,
+  CONSTRAINT `fk_Professor_Instituicao1`
+    FOREIGN KEY (`Instituicao_id`)
+    REFERENCES `mydb`.`Instituicao` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `mydb`.`Empresa`
 -- -----------------------------------------------------
@@ -112,29 +134,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Vantagens` (
 ENGINE = InnoDB;
 
 
--- -----------------------------------------------------
--- Table `mydb`.`Professor`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`Professor` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`Professor` (
-  `idProfessor` INT NOT NULL AUTO_INCREMENT,
-  `nome` CHAR NOT NULL,
-  `cpf` VARCHAR(45) NOT NULL,
-  `email` VARCHAR(45) NOT NULL,
-  `senha` VARCHAR(45) NOT NULL,
-  `rg` VARCHAR(45) NOT NULL,
-  `endereco` VARCHAR(500) NOT NULL,
-  `moeda` INT NULL,
-  `Instituicao_id` INT NOT NULL,
-  PRIMARY KEY (`idProfessor`, `Instituicao_id`),
-  INDEX `fk_Professor_Instituicao1_idx` (`Instituicao_id` ASC) VISIBLE,
-  CONSTRAINT `fk_Professor_Instituicao1`
-    FOREIGN KEY (`Instituicao_id`)
-    REFERENCES `mydb`.`Instituicao` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
