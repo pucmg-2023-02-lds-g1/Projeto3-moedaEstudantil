@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Lista de Alunos</title>
+    <script src="../js/main.js" defer></script>
+    <script src="../js/aluno.js" defer></script>
+</head>
+
+<body>
+    <table id="alunoTable">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>CPF</th>
+                <th>Email</th>
+                <th>Endereço</th>
+                <th>Instituição</th>
+                <th>Curso</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Auto adiciona -->
+        </tbody>
+    </table>
+
+    <script type="text/javascript">
+        window.onload = function () {
+            viewAllAlunos();
+        }
+
+        function viewAllAlunos() {
+            fetch("http://localhost:3000/viewAllAlunos", {
+                method: 'GET',
+                headers: { 'Content-Type': 'application/json' },
+            }).then(function (res) {
+                res.json().then(function (data) {
+                    if (!data.alunos) {
+                        window.alert(`${data.tipo} - ${data.mensagem}`)
+                    } else {
+                        let table = document.getElementById('alunoTable').getElementsByTagName('tbody')[0];
+                        table.innerHTML = ""; 
+                        data.alunos.forEach(aluno => {
+                            let row = table.insertRow();
+                            row.insertCell(0).innerHTML = aluno.nome;
+                            row.insertCell(1).innerHTML = aluno.cpf;
+                            row.insertCell(2).innerHTML = aluno.email;
+                            row.insertCell(3).innerHTML = aluno.endereco;
+                            row.insertCell(4).innerHTML = aluno.instituicao;
+                            row.insertCell(5).innerHTML = aluno.curso;
+                        });
+                    }
+                })
+            })
+        }
+
+    </script>
+
+</body>
+
+</html>

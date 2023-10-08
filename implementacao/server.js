@@ -182,3 +182,35 @@ app.post("/cadastrarAluno", function(req, res){
     })
   })
 })
+
+app.get("/viewAllAlunos", function(req, res){
+  connection.query(`SELECT * FROM aluno;`,
+  (err, rows, fields) => {
+    if(err) {
+      return res.json({
+        tipo: "Erro ao retornar dados dos alunos",
+        mensagem: err
+      })
+    }
+    
+    return res.json({
+      alunos: rows
+    })
+  })
+})
+
+app.get("/viewAllEmpresas", function(req, res){
+  connection.query(`SELECT * FROM empresa;`,
+  (err, rows, fields) => {
+    if(err) {
+      return res.json({
+        tipo: "Erro ao retornar dados das empresas",
+        mensagem: err
+      })
+    }
+    
+    return res.json({
+      empresas: rows
+    })
+  })
+})

@@ -79,3 +79,20 @@ function deletarEmpresa() {
         })
     })
 }
+
+function viewAllEmpresas() {
+    fetch("http://localhost:3000/viewAllEmpresas", {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' },
+    }).then(function(res) {
+        res.json().then(function(data) {
+            if(!data.empresas){
+                window.alert(`${data.tipo} - ${data.mensagem}`)
+            } else {
+                data.empresas.forEach(empresa => {
+                    console.log(`Nome: ${empresa.nome}, CNPJ: ${empresa.cnpj}, Email: ${empresa.email}`);
+                });
+            }
+        })
+    })
+}

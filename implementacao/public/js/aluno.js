@@ -112,3 +112,20 @@ function cadastrarAluno() {
         })
     })
 }
+
+function viewAllAlunos() {
+    fetch("http://localhost:3000/viewAllAlunos", {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' },
+    }).then(function(res) {
+        res.json().then(function(data) {
+            if(!data.alunos){
+                window.alert(`${data.tipo} - ${data.mensagem}`)
+            } else {
+                data.alunos.forEach(aluno => {
+                    console.log(`Nome: ${aluno.nome}, CPF: ${aluno.cpf}, Email: ${aluno.email}, Endereço: ${aluno.endereco}, Instituição: ${aluno.instituicao}, Curso: ${aluno.curso}`);
+                });
+            }
+        })
+    })
+}
