@@ -129,3 +129,21 @@ function viewAllAlunos() {
         })
     })
 }
+
+function pesquisarInstituicoes() {
+
+    const dropdown = document.getElementById("instituicao")
+    $("#instituicao").html(``)
+    // Recebe a resposta enviada pela rota de pesquisa no banco de dados
+    fetch("http://localhost:3000/pesquisarInstituicoes", {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' },
+    }).then(function (res) {
+        $("#instituicao").append(`<option value="null">Instituições</option>`)
+        res.json().then(function (data) {
+            for (let i = 0; i < data.length; i++) {
+                $("#instituicao").append('<option value="' + data[i].id + '">' + data[i].nome + '</option>');
+            }
+        })
+    })
+}
