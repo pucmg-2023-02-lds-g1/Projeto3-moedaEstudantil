@@ -101,7 +101,7 @@ function cadastrarAluno() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-            id, nome, cpf, email, endereco, instituicao, curso, senha
+            nome, cpf, email, endereco, instituicao, curso, senha
         })
     }).then(function(res) {
         res.json().then(function(data) {

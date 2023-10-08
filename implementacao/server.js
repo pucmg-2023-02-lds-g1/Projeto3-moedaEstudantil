@@ -15,7 +15,7 @@ const connection = mysql.createConnection({
     host: "localhost",
     user: "root",
     password: "",
-    database: "moedaEstudantil",
+    database: "mydb",
 });
 
 //INICIALIZATION CONNECTION WITH DATABASE
@@ -177,18 +177,19 @@ app.post("/deleteAluno", function(req, res){
 
 
 app.post("/cadastrarAluno", function(req, res){
-  connection.query(`INSERT INTO aluno VALUES = "${req.body.nome}", "${req.body.cpf}", "${req.body.email}", "${req.body.senha}", "${req.body.endereco}", "${req.body.instituicao}", "${req.body.curso}";`,
+  connection.query(`INSERT INTO aluno VALUES (NULL, "${req.body.nome}", "${req.body.senha}", "${req.body.email}", "${req.body.cpf}", 000000,  "${req.body.endereco}", 0, 1, 1);
+  `,
   (err, rows, fields) => {
     if(err) {
       return res.json({
-        tipo: "Erro de alteração",
+        tipo: "Erro de cadastro",
         mensagem: err
       })
     }
     
     return res.json({
       tipo: "Sucesso!",
-      mensagem: "Usuario alterado",
+      mensagem: "Usuario cadastrado",
       s: "funcionando"
     })
   })
