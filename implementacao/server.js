@@ -54,7 +54,7 @@ app.post("/cadastro", function (req, res) {
 
 
 app.post("/updateAluno", function(req, res){
-  connection.query(`UPDATE aluno SET nome = "${req.body.nome}", cpf = "${req.body.cpf}", email = "${req.body.email}", senha = "${req.body.senha}", endereco = "${req.body.endereco}", instituicao = "${req.body.instituicao}", curso = "${req.body.curso}" WHERE id = ${req.body.id};`,
+  connection.query(`UPDATE aluno SET nome = "${req.body.nome}", cpf = "${req.body.cpf}", email = "${req.body.email}", senha = "${req.body.senha}", endereco = "${req.body.endereco}", Instituicao_id = ${Number(req.body.instituicao)}, Curso_idCurso = ${Number(req.body.curso)} WHERE idAluno = ${req.body.id};`,
   (err, rows, fields) => {
     if(err) {
       return res.json({
@@ -73,7 +73,7 @@ app.post("/updateAluno", function(req, res){
 
 
 app.post("/viewAluno", function(req, res){
-  connection.query(`SELECT * FROM aluno WHERE id = ${req.body.id};`,
+  connection.query(`SELECT * FROM aluno WHERE idAluno = ${req.body.id};`,
   (err, rows, fields) => {
     if(err) {
       return res.json({
@@ -81,10 +81,16 @@ app.post("/viewAluno", function(req, res){
         mensagem: err
       })
     }
+    if(rows[0] == null) {
+      return res.json({
+        tipo: "Erro ao retornar dados do aluno",
+        mensagem: "O código do aluno logado está errado ou não existe"
+      })
+    }
     
     return res.json({
       aluno: {
-        nome: rows[0].nome, cpf: rows[0].cpf, email: rows[0].email, senha: rows[0].senha, endereco: rows[0].endereco, instituicao: rows[0].instituicao, curso: rows[0].curso, moeda: rows[0].moeda
+        nome: rows[0].nome, cpf: rows[0].cpf, email: rows[0].email, senha: rows[0].senha, endereco: rows[0].endereco, instituicao: rows[0].Instituicao_id, curso: rows[0].Curso_idCurso, moeda: rows[0].moeda
       }
     })
   })
@@ -119,7 +125,12 @@ app.post("/viewEmpresa", function(req, res){
         mensagem: err
       })
     }
-    
+    if(rows[0] == null) {
+      return res.json({
+        tipo: "Erro ao retornar dados da empresa",
+        mensagem: "O código da empresa logada está errado ou não existe"
+      })
+    }
     return res.json({
       empresa: {
         nome: rows[0].nome, cnpj: rows[0].cnpj, email: rows[0].email, senha: rows[0].senha
@@ -147,7 +158,7 @@ app.post("/deleteEmpresa", function(req, res){
 })
 
 app.post("/deleteAluno", function(req, res){
-  connection.query(`DELETE from aluno WHERE id = ${req.body.id};`,
+  connection.query(`DELETE from aluno WHERE idAluno = ${req.body.id};`,
   (err, rows, fields) => {
     if(err) {
       return res.json({

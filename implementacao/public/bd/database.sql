@@ -8,21 +8,21 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
 -- -----------------------------------------------------
--- Schema mydb
+-- Schema moedaEstudantil
 -- -----------------------------------------------------
 
 -- -----------------------------------------------------
--- Schema mydb
+-- Schema moedaEstudantil
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 ;
-USE `mydb` ;
+CREATE SCHEMA IF NOT EXISTS `moedaEstudantil` DEFAULT CHARACTER SET utf8 ;
+USE `moedaEstudantil` ;
 
 -- -----------------------------------------------------
--- Table `mydb`.`Curso`
+-- Table `moedaEstudantil`.`Curso`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`Curso` ;
+DROP TABLE IF EXISTS `moedaEstudantil`.`Curso` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`Curso` (
+CREATE TABLE IF NOT EXISTS `moedaEstudantil`.`Curso` (
   `idCurso` INT NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`idCurso`))
@@ -30,11 +30,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`Instituicao`
+-- Table `moedaEstudantil`.`Instituicao`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`Instituicao` ;
+DROP TABLE IF EXISTS `moedaEstudantil`.`Instituicao` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`Instituicao` (
+CREATE TABLE IF NOT EXISTS `moedaEstudantil`.`Instituicao` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id`))
@@ -42,11 +42,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`Aluno`
+-- Table `moedaEstudantil`.`Aluno`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`Aluno` ;
+DROP TABLE IF EXISTS `moedaEstudantil`.`Aluno` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`Aluno` (
+CREATE TABLE IF NOT EXISTS `moedaEstudantil`.`Aluno` (
   `idAluno` INT NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(45) NOT NULL,
   `senha` VARCHAR(45) NOT NULL,
@@ -62,22 +62,22 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Aluno` (
   INDEX `fk_Aluno_Instituicao1_idx` (`Instituicao_id` ASC) VISIBLE,
   CONSTRAINT `fk_Aluno_Curso1`
     FOREIGN KEY (`Curso_idCurso`)
-    REFERENCES `mydb`.`Curso` (`idCurso`)
+    REFERENCES `moedaEstudantil`.`Curso` (`idCurso`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Aluno_Instituicao1`
     FOREIGN KEY (`Instituicao_id`)
-    REFERENCES `mydb`.`Instituicao` (`id`)
+    REFERENCES `moedaEstudantil`.`Instituicao` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 -- -----------------------------------------------------
--- Table `mydb`.`Professor`
+-- Table `moedaEstudantil`.`Professor`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`Professor` ;
+DROP TABLE IF EXISTS `moedaEstudantil`.`Professor` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`Professor` (
+CREATE TABLE IF NOT EXISTS `moedaEstudantil`.`Professor` (
   `idProfessor` INT NOT NULL AUTO_INCREMENT,
   `nome` CHAR NOT NULL,
   `cpf` VARCHAR(45) NOT NULL,
@@ -91,16 +91,16 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Professor` (
   INDEX `fk_Professor_Instituicao1_idx` (`Instituicao_id` ASC) VISIBLE,
   CONSTRAINT `fk_Professor_Instituicao1`
     FOREIGN KEY (`Instituicao_id`)
-    REFERENCES `mydb`.`Instituicao` (`id`)
+    REFERENCES `moedaEstudantil`.`Instituicao` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 -- -----------------------------------------------------
--- Table `mydb`.`Empresa`
+-- Table `moedaEstudantil`.`Empresa`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`Empresa` ;
+DROP TABLE IF EXISTS `moedaEstudantil`.`Empresa` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`Empresa` (
+CREATE TABLE IF NOT EXISTS `moedaEstudantil`.`Empresa` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(45) NOT NULL,
   `cnpj` VARCHAR(45) NOT NULL,
@@ -111,11 +111,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`Vantagens`
+-- Table `moedaEstudantil`.`Vantagens`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`Vantagens` ;
+DROP TABLE IF EXISTS `moedaEstudantil`.`Vantagens` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`Vantagens` (
+CREATE TABLE IF NOT EXISTS `moedaEstudantil`.`Vantagens` (
   `idVantagem` INT NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(45) NOT NULL,
   `descricao` VARCHAR(500) NULL,
@@ -128,7 +128,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Vantagens` (
   INDEX `fk_Vantagens_Empresa1_idx` (`Empresa_id` ASC) VISIBLE,
   CONSTRAINT `fk_Vantagens_Empresa1`
     FOREIGN KEY (`Empresa_id`)
-    REFERENCES `mydb`.`Empresa` (`id`)
+    REFERENCES `moedaEstudantil`.`Empresa` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -138,11 +138,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`Transacoes`
+-- Table `moedaEstudantil`.`Transacoes`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`Transacoes` ;
+DROP TABLE IF EXISTS `moedaEstudantil`.`Transacoes` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`Transacoes` (
+CREATE TABLE IF NOT EXISTS `moedaEstudantil`.`Transacoes` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `Aluno_idAluno` INT NOT NULL,
   `Professor_idProfessor` INT NOT NULL,
@@ -153,23 +153,23 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Transacoes` (
   INDEX `fk_Transacoes_Aluno1_idx` (`Aluno_idAluno` ASC) VISIBLE,
   CONSTRAINT `fk_Transacoes_Professor`
     FOREIGN KEY (`Professor_idProfessor`)
-    REFERENCES `mydb`.`Professor` (`nome`)
+    REFERENCES `moedaEstudantil`.`Professor` (`idProfessor`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Transacoes_Aluno1`
     FOREIGN KEY (`Aluno_idAluno`)
-    REFERENCES `mydb`.`Aluno` (`nome`)
+    REFERENCES `moedaEstudantil`.`Aluno` (`idAluno`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`Vantagens_has_Aluno`
+-- Table `moedaEstudantil`.`Vantagens_has_Aluno`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`Vantagens_has_Aluno` ;
+DROP TABLE IF EXISTS `moedaEstudantil`.`Vantagens_has_Aluno` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`Vantagens_has_Aluno` (
+CREATE TABLE IF NOT EXISTS `moedaEstudantil`.`Vantagens_has_Aluno` (
   `Vantagens_idVantagem` INT NOT NULL,
   `Aluno_idAluno` INT NOT NULL,
   PRIMARY KEY (`Vantagens_idVantagem`, `Aluno_idAluno`),
@@ -177,12 +177,12 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Vantagens_has_Aluno` (
   INDEX `fk_Vantagens_has_Aluno_Vantagens1_idx` (`Vantagens_idVantagem` ASC) VISIBLE,
   CONSTRAINT `fk_Vantagens_has_Aluno_Vantagens1`
     FOREIGN KEY (`Vantagens_idVantagem`)
-    REFERENCES `mydb`.`Vantagens` (`idVantagem`)
+    REFERENCES `moedaEstudantil`.`Vantagens` (`idVantagem`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Vantagens_has_Aluno_Aluno1`
     FOREIGN KEY (`Aluno_idAluno`)
-    REFERENCES `mydb`.`Aluno` (`idAluno`)
+    REFERENCES `moedaEstudantil`.`Aluno` (`idAluno`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
