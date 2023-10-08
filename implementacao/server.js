@@ -177,7 +177,7 @@ app.post("/deleteAluno", function(req, res){
 
 
 app.post("/cadastrarAluno", function(req, res){
-  connection.query(`INSERT INTO aluno VALUES (NULL, "${req.body.nome}", "${req.body.senha}", "${req.body.email}", "${req.body.cpf}", 000000,  "${req.body.endereco}", 0, 1, 1);
+  connection.query(`INSERT INTO aluno VALUES (NULL, "${req.body.nome}", "${req.body.senha}", "${req.body.email}", "${req.body.cpf}", 000000,  "${req.body.endereco}", 0, 1, ${req.body.instituicao});
   `,
   (err, rows, fields) => {
     if(err) {
@@ -226,3 +226,26 @@ app.get("/viewAllEmpresas", function(req, res){
     })
   })
 })
+
+
+app.get('/pesquisarInstituicoes', function (req, res) {
+  var instituicoes = [];
+
+  connection.query('SELECT * FROM instituicao', (err, rows, fields) => {
+    if (err) {
+      return res.json({
+        tipo: "Erro",
+        mensagem: err,
+      });
+    }
+    else {
+      for (let i = 0; i < rows.length; i++) {
+        instituicoes.push({
+          id: rows[i].id,
+          nome: rows[i].nome,
+        });
+      }
+    }
+    res.send(JSON.stringify(instituicoes));
+  })
+});
