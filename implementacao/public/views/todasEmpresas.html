@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Lista de Empresas</title>
+    <script src="../js/main.js" defer></script>
+    <script src="../js/empresa.js" defer></script>
+</head>
+
+<body>
+    <table id="empresaTable">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>CNPJ</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Auto adiciona -->
+        </tbody>
+    </table>
+
+    <script type="text/javascript">
+        window.onload = function () {
+            viewAllEmpresas();
+        }
+
+        function viewAllEmpresas() {
+            fetch("http://localhost:3000/viewAllEmpresas", {
+                method: 'GET',
+                headers: { 'Content-Type': 'application/json' },
+            }).then(function (res) {
+                res.json().then(function (data) {
+                    if (!data.empresas) {
+                        window.alert(`${data.tipo} - ${data.mensagem}`)
+                    } else {
+                        let table = document.getElementById('empresaTable').getElementsByTagName('tbody')[0];
+                        table.innerHTML = ""; // Clear the table
+                        data.empresas.forEach(empresa => {
+                            let row = table.insertRow();
+                            row.insertCell(0).innerHTML = empresa.nome;
+                            row.insertCell(1).innerHTML = empresa.cnpj;
+                            row.insertCell(2).innerHTML = empresa.email;
+                        });
+                    }
+                })
+            })
+        }
+    </script>
+
+</body>
+
+</html>
