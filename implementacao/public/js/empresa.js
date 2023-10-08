@@ -96,3 +96,25 @@ function viewAllEmpresas() {
         })
     })
 }
+
+function cadastrarEmpresa() {
+    let nome = document.getElementById("nome").value
+    let cnpj = document.getElementById("cnpj").value
+    let email = document.getElementById("email").value
+    let senha = document.getElementById("senha").value
+
+    fetch("http://localhost:3000/cadastrarEmpresa", {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            nome, cnpj, email, senha
+        })
+    }).then(function(res) {
+        res.json().then(function(data) {
+            window.alert(`${data.tipo} - ${data.mensagem}`)
+            if(data.s){
+                window.location.reload();
+            }
+        })
+    })
+}
