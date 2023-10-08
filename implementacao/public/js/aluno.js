@@ -123,7 +123,7 @@ function viewAllAlunos() {
                 window.alert(`${data.tipo} - ${data.mensagem}`)
             } else {
                 data.alunos.forEach(aluno => {
-                    console.log(`Nome: ${aluno.nome}, CPF: ${aluno.cpf}, Email: ${aluno.email}, Endereço: ${aluno.endereco}, Instituição: ${aluno.instituicao}, Curso: ${aluno.curso}`);
+                    console.log(`Nome: ${aluno.nome}, CPF: ${aluno.cpf}, Email: ${aluno.email}, Endereço: ${aluno.endereco}, Instituição: ${aluno.Instituicao_id}, Curso: ${aluno.Curso_idCurso}`);
                 });
             }
         })
