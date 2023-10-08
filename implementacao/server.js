@@ -15,7 +15,7 @@ const connection = mysql.createConnection({
     host: "localhost",
     user: "root",
     password: "",
-    database: "mydb",
+    database: "moedaestudantil",
 });
 
 //INICIALIZATION CONNECTION WITH DATABASE
