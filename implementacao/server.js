@@ -98,7 +98,7 @@ app.post("/viewAluno", function(req, res){
 
 
 app.post("/updateEmpresa", function(req, res){
-  connection.query(`UPDATE empresa SET nome = "${req.body.nome}", cnpj = "${req.body.cnpj}", email = "${req.body.email}", senha = "${req.body.senha}";`,
+  connection.query(`UPDATE empresa SET nome = "${req.body.nome}", cnpj = "${req.body.cnpj}", email = "${req.body.email}", senha = "${req.body.senha}" WHERE id = ${req.body.id};`,
   (err, rows, fields) => {
     if(err) {
       return res.json({
@@ -263,6 +263,28 @@ app.post("/cadastrarEmpresa", function(req, res){
     return res.json({
       tipo: "Sucesso!",
       mensagem: "Empresa cadastrada com sucesso",
+      s: "funcionando"
+    })
+  })
+})
+
+app.post("/login", function(req, res){
+  connection.query(`SELECT ${req.body.id} AS id FROM ${req.body.tabela} where email = "${req.body.email}" and senha = "${req.body.senha}" LIMIT 1;`,
+  (err, rows, fields) => {
+    if(err) {
+      return res.json({
+        tipo: "Erro ao retornar dados",
+        mensagem: err
+      })
+    }
+    if(rows[0] == null) {
+      return res.json({
+        tipo: "Usuário não encontrado",
+        mensagem: "Verifique os dados inseridos"
+      })
+    }
+    return res.json({
+      id: rows[0].id,
       s: "funcionando"
     })
   })

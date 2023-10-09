@@ -14,7 +14,7 @@ function updateAluno() {
     instituicao = document.getElementById("instituicao").value
     curso = document.getElementById("curso").value
 
-    fetch("http://localhost:3000/updateAluno", {
+    fetch(`http://localhost:3000/updateAluno`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -38,7 +38,7 @@ function viewAluno() {
 
     let nome = "", cpf = "", email = "", endereco = "", instituicao = "", curso = "", moeda = "", senha = "";
 
-    fetch("http://localhost:3000/viewAluno", {
+    fetch(`http://localhost:3000/viewAluno`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -71,7 +71,7 @@ function deletarAluno() {
         id = JSON.parse(id).id
     }
 
-    fetch("http://localhost:3000/deleteAluno", {
+    fetch(`http://localhost:3000/deleteAluno`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -97,7 +97,7 @@ function cadastrarAluno() {
     let instituicao = document.getElementById("instituicao").value
     let curso = document.getElementById("curso").value
 
-    fetch("http://localhost:3000/cadastrarAluno", {
+    fetch(`http://localhost:3000/cadastrarAluno`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -114,7 +114,7 @@ function cadastrarAluno() {
 }
 
 function viewAllAlunos() {
-    fetch("http://localhost:3000/viewAllAlunos", {
+    fetch(`http://localhost:3000/viewAllAlunos`, {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' },
     }).then(function(res) {
@@ -135,7 +135,7 @@ function pesquisarInstituicoes() {
     const dropdown = document.getElementById("instituicao")
     $("#instituicao").html(``)
     // Recebe a resposta enviada pela rota de pesquisa no banco de dados
-    fetch("http://localhost:3000/pesquisarInstituicoes", {
+    fetch(`http://localhost:3000/pesquisarInstituicoes`, {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' },
     }).then(function (res) {

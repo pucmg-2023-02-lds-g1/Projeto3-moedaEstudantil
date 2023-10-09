@@ -11,7 +11,7 @@ function updateEmpresa() {
     email = document.getElementById("email").value
     senha = document.getElementById("senha").value
 
-    fetch("http://localhost:3000/updateEmpresa", {
+    fetch(`http://localhost:3000/updateEmpresa`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -35,7 +35,7 @@ function viewEmpresa() {
 
     let nome = "", cnpj = "", email = "", senha = "";
 
-    fetch("http://localhost:3000/viewEmpresa", {
+    fetch(`http://localhost:3000/viewEmpresa`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -64,7 +64,7 @@ function deletarEmpresa() {
         id = JSON.parse(id).id
     }
 
-    fetch("http://localhost:3000/deleteEmpresa", {
+    fetch(`http://localhost:3000/deleteEmpresa`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -74,14 +74,14 @@ function deletarEmpresa() {
         res.json().then(function (data) {
             if (data.tipo) {
                 window.alert(`${data.tipo} - ${data.mensagem}`)
-                window.location.assign("../public/views/index.html")
+                window.location.assign("../views/index.html")
             }
         })
     })
 }
 
 function viewAllEmpresas() {
-    fetch("http://localhost:3000/viewAllEmpresas", {
+    fetch(`http://localhost:3000/viewAllEmpresas`, {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' },
     }).then(function(res) {
@@ -103,7 +103,7 @@ function cadastrarEmpresa() {
     let email = document.getElementById("email").value
     let senha = document.getElementById("senha").value
 
-    fetch("http://localhost:3000/cadastrarEmpresa", {
+    fetch(`http://localhost:3000/cadastrarEmpresa`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
