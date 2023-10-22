@@ -289,3 +289,19 @@ app.post("/login", function(req, res){
     })
   })
 })
+
+app.get("/viewAlunosDoProfessor", function(req, res){
+  connection.query(`SELECT * FROM aluno INNER JOIN professor on aluno.Instituicao_id = professor.Instituicao_id WHERE professor.Instituicao_id="${req.body.id}";`,
+  (err, rows, fields) => {
+    if(err) {
+      return res.json({
+        tipo: "Erro ao retornar alunos do professor",
+        mensagem: err
+      })
+    }
+    
+    return res.json({
+      alunos: rows
+    })
+  })
+})
