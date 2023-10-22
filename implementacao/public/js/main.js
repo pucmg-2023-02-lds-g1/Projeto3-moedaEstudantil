@@ -101,9 +101,9 @@ function levarHome() {
 }
 
 
-function alunosDoProfessor(professorId, alunoId, quantidade) {
+function alunosDoProfessor() {
     let id=sessionStorage.getItem('id');
-    fetch("http://localhost:3000/acharParceiro", {
+    fetch("http://localhost:3000/viewProfessor", {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -117,10 +117,32 @@ function alunosDoProfessor(professorId, alunoId, quantidade) {
 
             const nome= document.getElementById("nome")
             nome.innerHTML =`
-            <h1 class="nomeParceiro" id="nome">${data.parceiro.nome}</h1>
-            
+            <div class="card" style="width: 18rem;">
+            <div class="card-body">
+              <h5 class="card-title">Nome: ${data.aluno.nome}</h5>
+              <p class="card-text">Email: ${data.aluno.email}</p>
+              <p class="card-text">Moedas: ${data.aluno.moeda}</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+          </div>
             `
             sessionStorage.setItem('parceiro',JSON.stringify(data.parceiro))
         });
     })
+  }
+
+  
+  function transferirMoedas(professorId, alunoId, quantidade) {
+    fetch('/transferirMoedas', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ professorId, alunoId, quantidade }),
+    })
+    .then(response => response.text())
+    .then(data => alert(data))
+    .catch((error) => {
+      console.error('Erro:', error);
+    });
   }
