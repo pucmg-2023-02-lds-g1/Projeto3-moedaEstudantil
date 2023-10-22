@@ -46,6 +46,12 @@ function login() {
         url = "../views/aluno.html"
     }
 
+    if(tipo == 3) {
+        tabela = "Professor"
+        id = "idProfessor"
+        url = "../views/index.html"
+    }
+
     fetch(`http://localhost:3000/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },

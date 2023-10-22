@@ -118,7 +118,7 @@ DROP TABLE IF EXISTS `moedaEstudantil`.`Professor` ;
 
 CREATE TABLE IF NOT EXISTS `moedaEstudantil`.`Professor` (
   `idProfessor` INT NOT NULL AUTO_INCREMENT,
-  `nome` CHAR NOT NULL,
+  `nome` VARCHAR(45) NOT NULL,
   `cpf` VARCHAR(45) NOT NULL,
   `email` VARCHAR(45) NOT NULL,
   `senha` VARCHAR(45) NOT NULL,
@@ -193,3 +193,4 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 INSERT into instituicao values (NULL, "puc");
 insert into curso values (NULL, "curso1");
+insert into Professor values (NULL, "josé", "11111111111", "j@gmail.com", "123", "1123", "rua l", NULL, 1);
