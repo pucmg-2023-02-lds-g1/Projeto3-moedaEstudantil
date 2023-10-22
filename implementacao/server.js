@@ -14,7 +14,7 @@ app.use(express.static("public"))
 const connection = mysql.createConnection({
     host: "localhost",
     user: "root",
-    password: "1234",
+    password: "coxinha",
     database: "moedaestudantil",
 });
 
@@ -328,6 +328,22 @@ app.post("/viewProfessor", function(req, res){
       professor: {
         nome: rows[0].nome, cpf: rows[0].cpf, email: rows[0].email, senha: rows[0].senha, endereco: rows[0].endereco, rg: rows[0].rg, moedas: rows[0].moedas, instituicao: rows[0].Instituicao_id
       }
+    })
+  })
+})
+
+app.get("/getProfessor", function(req, res){
+  connection.query(`SELECT * FROM Professor;`,
+  (err, rows, fields) => {
+    if(err) {
+      return res.json({
+        tipo: "Erro ao retornar dados do Professor",
+        mensagem: err
+      })
+    }
+    
+    return res.json({
+      empresas: rows
     })
   })
 })
