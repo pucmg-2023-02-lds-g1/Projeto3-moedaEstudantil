@@ -290,6 +290,7 @@ app.post("/login", function(req, res){
   })
 })
 
+
 app.post("/updateProfessor", function(req, res){
   connection.query(`UPDATE professor SET nome = "${req.body.nome}", cpf = "${req.body.cpf}", email = "${req.body.email}", senha = "${req.body.senha}", endereco = "${req.body.endereco}", rg = "${req.body.rg}", moedas = ${Number(req.body.moedas)}, Instituicao_id = ${Number(req.body.instituicao)} WHERE idProfessor = ${req.body.id};`,
   (err, rows, fields) => {
@@ -344,6 +345,22 @@ app.get("/getProfessor", function(req, res){
     
     return res.json({
       empresas: rows
+    })
+  })
+})
+
+app.post("/viewAlunosDoProfessor", function(req, res){
+  connection.query(`SELECT * FROM aluno INNER JOIN professor on aluno.Instituicao_id = professor.Instituicao_id WHERE professor.Instituicao_id="${req.body.id}";`,
+  (err, rows, fields) => {
+    if(err) {
+      return res.json({
+        tipo: "Erro ao retornar alunos do professor",
+        mensagem: err
+      })
+    }
+    
+    return res.json({
+      alunos: rows
     })
   })
 })

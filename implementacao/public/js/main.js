@@ -99,3 +99,28 @@ function levarCadastro() {
 function levarHome() {
     window.location.assign("views/login.html")
 }
+
+
+function alunosDoProfessor(professorId, alunoId, quantidade) {
+    let id=sessionStorage.getItem('id');
+    fetch("http://localhost:3000/acharParceiro", {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            id:id,
+        })
+        
+    }).then(function (res) {
+
+        res.json().then(function (data) {
+            console.log(JSON.stringify(`${data.parceiro.nome}`))
+
+            const nome= document.getElementById("nome")
+            nome.innerHTML =`
+            <h1 class="nomeParceiro" id="nome">${data.parceiro.nome}</h1>
+            
+            `
+            sessionStorage.setItem('parceiro',JSON.stringify(data.parceiro))
+        });
+    })
+  }
