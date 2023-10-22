@@ -364,3 +364,28 @@ app.post("/viewAlunosDoProfessor", function(req, res){
     })
   })
 })
+
+app.post('/transferirMoedas', (req, res) => {
+  const { professorId, alunoId, quantidade } = req.body;
+
+  const sqlVerificar = 'SELECT moedas FROM professores WHERE id = ?';
+  connection.query(sqlVerificar, professorId, (err, results) => {
+    if (err) throw err;
+
+    if (results[0].moedas < quantidade) {
+      return res.status(400).send('O professor não tem moedas suficientes');
+    }
+
+    const sqlTransferir = 'UPDATE professores SET moedas = moedas - ? WHERE id = ?; UPDATE alunos SET moedas = moedas + ? WHERE id = ?';
+    connection.query(sqlTransferir, [quantidade, professorId, quantidade, alunoId], (err, results) => {
+      if (err) throw err;
+
+      const sqlTransacao = 'INSERT INTO transacoes (professorId, alunoId, valor) VALUES (?, ?, ?)';
+      connection.query(sqlTransacao, [professorId, alunoId, quantidade], (err, results) => {
+        if (err) throw err;
+
+        res.send('Transferência de moedas realizada com sucesso!');
+      });
+    });
+  });
+});
