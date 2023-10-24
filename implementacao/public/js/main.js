@@ -46,6 +46,12 @@ function login() {
         url = "../views/aluno.html"
     }
 
+    if(tipo == 3) {
+        tabela = "Professor"
+        id = "idProfessor"
+        url = "../views/index.html"
+    }
+
     fetch(`http://localhost:3000/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -93,3 +99,50 @@ function levarCadastro() {
 function levarHome() {
     window.location.assign("views/login.html")
 }
+
+
+function alunosDoProfessor() {
+    let id=sessionStorage.getItem('id');
+    fetch("http://localhost:3000/viewProfessor", {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            id:id,
+        })
+        
+    }).then(function (res) {
+
+        res.json().then(function (data) {
+            console.log(JSON.stringify(`${data.parceiro.nome}`))
+
+            const nome= document.getElementById("nome")
+            nome.innerHTML =`
+            <div class="card" style="width: 18rem;">
+            <div class="card-body">
+              <h5 class="card-title">Nome: ${data.aluno.nome}</h5>
+              <p class="card-text">Email: ${data.aluno.email}</p>
+              <p class="card-text">Moedas: ${data.aluno.moeda}</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+          </div>
+            `
+            sessionStorage.setItem('parceiro',JSON.stringify(data.parceiro))
+        });
+    })
+  }
+
+  
+  function transferirMoedas(professorId, alunoId, quantidade) {
+    fetch('/transferirMoedas', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ professorId, alunoId, quantidade }),
+    })
+    .then(response => response.text())
+    .then(data => alert(data))
+    .catch((error) => {
+      console.error('Erro:', error);
+    });
+  }

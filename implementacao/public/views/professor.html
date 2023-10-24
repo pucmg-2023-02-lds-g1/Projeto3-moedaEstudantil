@@ -1,6 +1,3 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-
 <head>
     <!-- Metadata -->
     <meta charset="UTF-8">
@@ -30,14 +27,30 @@
         defer></script>
     <!-- Main -->
     <script src="../js/main.js" defer></script>
+    <script src="../js/professor.js" defer></script>
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.2/font/bootstrap-icons.css">
     <!-- Título da página -->
-    <title>Login</title>
+    <title>Perfil do professor</title>
 </head>
 
-<body>
+<body onload="viewProfessor(), estaLogado(3)">
+    <div class="p-2">
+        <a href="index.html"><h1><i class="bi bi-arrow-left-circle mr-1"></i>Início</h1></a>
+    </div>
     <form>
+        <div class="form-group row m-0 p-2">
+            <label for="nome" class="col-sm-2 col-form-label">Nome:</label>
+            <div class="col-sm-10">
+                <input id="nome" class="form-control" type="text" placeholder="Seu nome">
+            </div>
+        </div>
+        <div class="form-group row m-0 p-2">
+            <label for="cpf" class="col-sm-2 col-form-label">CPF:</label>
+            <div class="col-sm-10">
+                <input id="cpf" class="form-control" type="text" placeholder="Seu cpf">
+            </div>
+        </div>
         <div class="form-group row m-0 p-2">
             <label for="email" class="col-sm-2 col-form-label">Email:</label>
             <div class="col-sm-10">
@@ -52,20 +65,32 @@
             <i id="senhaIcon" class="bi bi-eye-slash" onclick="visibilidadeDaSenha()"></i>
         </div>
         <div class="form-group row m-0 p-2">
-            <label for="tipo" class="col-sm-2 col-form-label" required>*Tipo do usuário:</label>
+            <label for="endereco" class="col-sm-2 col-form-label">Endereco:</label>
             <div class="col-sm-10">
-                <select id="tipo" class="form-control">
-                    <option value="">Selecione seu tipo</option>
-                    <option value="1">Aluno</option>
-                    <option value="2">Empresa</option>
-                    <option value="3">Professor</option>
+                <input id="endereco" class="form-control" type="text" placeholder="Seu endereco">
+            </div>
+        </div>
+        <div class="form-group row m-0 p-2">
+            <label for="instituicao" class="col-sm-2 col-form-label">Instituicao:</label>
+            <div class="col-sm-10">
+                <select id="instituicao" class="form-control">
+                    <option value="1">PUC Minas</option>
+                    <option value="2">Colégio Santa Maria</option>
                 </select>
             </div>
         </div>
         <div class="form-group row m-0 p-2">
-            <button type="button" class="btn btn-primary m-3" onclick="login()">Confirmar</button>
-            <button type="button" class="btn btn-danger m-3" onclick="levarCadastro()">Não tenho cadastro</button>
+            <label for="moeda" class="col-sm-2 col-form-label">Moedas:</label>
+            <div class="col-sm-10">
+              <input type="text" readonly disabled class="form-control-plaintext" id="moeda" value="0">
+            </div>
+        </div>
+    
+        <div class="form-group row m-0 p-2">
+            <button type="button" class="btn btn-primary m-3" onclick="updateProfessor()">Alterar dados</button>
+            <button type="button" class="btn btn-danger m-3" onclick="deletarProfessor()">Deletar conta</button>
         </div>
     </form>
 </body>
+
 </html>

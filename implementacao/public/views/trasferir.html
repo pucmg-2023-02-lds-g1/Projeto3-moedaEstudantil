@@ -36,36 +36,40 @@
     <title>Login</title>
 </head>
 
-<body>
+<body onload="alunosDoProfessor()">
+
     <form>
-        <div class="form-group row m-0 p-2">
-            <label for="email" class="col-sm-2 col-form-label">Email:</label>
-            <div class="col-sm-10">
-                <input id="email" class="form-control" type="text" placeholder="Seu email">
+        <h1>Transferir para aluno</h1>
+        <h2>Alunos</h2>
+
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+              <h5 class="card-title">Nome: </h5>
+              <p class="card-text">Email: </p>
+              <p class="card-text">Moedas: </p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
             </div>
-        </div>
-        <div class="form-group row m-0 p-2">
-            <label for="senha" class="col-sm-2 col-form-label">Senha:</label>
-            <div class="col-sm-9">
-                <input id="senha" class="form-control" type="password" placeholder="Sua senha">
+          </div>
+          
+          <div class="card" style="width: 18rem;">
+            <div class="card-body">
+              <h5 class="card-title">Nome: </h5>
+              <p class="card-text">Email: </p>
+              <p class="card-text">Moedas: </p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
             </div>
-            <i id="senhaIcon" class="bi bi-eye-slash" onclick="visibilidadeDaSenha()"></i>
-        </div>
-        <div class="form-group row m-0 p-2">
-            <label for="tipo" class="col-sm-2 col-form-label" required>*Tipo do usuário:</label>
-            <div class="col-sm-10">
-                <select id="tipo" class="form-control">
-                    <option value="">Selecione seu tipo</option>
-                    <option value="1">Aluno</option>
-                    <option value="2">Empresa</option>
-                    <option value="3">Professor</option>
-                </select>
+          </div>
+          
+          <div class="card" style="width: 18rem;">
+            <div class="card-body">
+              <h5 class="card-title">Nome: </h5>
+              <p class="card-text">Email: </p>
+              <p class="card-text">Moedas: </p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
             </div>
-        </div>
-        <div class="form-group row m-0 p-2">
-            <button type="button" class="btn btn-primary m-3" onclick="login()">Confirmar</button>
-            <button type="button" class="btn btn-danger m-3" onclick="levarCadastro()">Não tenho cadastro</button>
-        </div>
+          </div>
+
     </form>
+
 </body>
 </html>
