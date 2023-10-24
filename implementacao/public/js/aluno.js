@@ -107,7 +107,7 @@ function cadastrarAluno() {
         res.json().then(function(data) {
             window.alert(`${data.tipo} - ${data.mensagem}`)
             if(data.s){
-                window.location.reload();
+                window.location.assign("login.html");
             }
         })
     })

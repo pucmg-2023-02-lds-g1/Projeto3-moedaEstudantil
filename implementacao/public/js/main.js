@@ -58,7 +58,7 @@ function login() {
                 window.alert(`${data.tipo} - ${data.mensagem}`)
             } else {
                 sessionStorage.setItem("usuario",`{"id":${Number(data.id)}, "tipo":${tipo}}`)
-                window.location.assign(url)
+                window.location.assign("index.html")
             }
         })
     })
