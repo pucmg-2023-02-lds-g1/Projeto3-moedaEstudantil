@@ -17,6 +17,9 @@
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <!-- Main -->
 
+    <link rel="stylesheet" href="../css/login.css">
+    <link rel="stylesheet" href="../css/global.css">
+
     <!-- Script -->
     <!-- Bootstrap v4.0 -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
@@ -36,36 +39,51 @@
     <title>Login</title>
 </head>
 
+
+
 <body>
-    <form>
-        <div class="form-group row m-0 p-2">
-            <label for="email" class="col-sm-2 col-form-label">Email:</label>
-            <div class="col-sm-10">
-                <input id="email" class="form-control" type="text" placeholder="Seu email">
+
+    <header>
+        <img class="img_header" src="../assets/pngFodaDeVerdade.png">
+        <h1 class="nome_site">Incentive coins</h1>
+    </header>
+
+    <main>
+        <form>
+            <div class="form-group row m-0 p-2">
+                <label for="email" class="col-sm-2 col-form-label">Email:</label>
+                <div class="col-sm-10">
+                    <input id="email" class="form-control" type="text" placeholder="Seu email">
+                </div>
             </div>
-        </div>
-        <div class="form-group row m-0 p-2">
-            <label for="senha" class="col-sm-2 col-form-label">Senha:</label>
-            <div class="col-sm-9">
-                <input id="senha" class="form-control" type="password" placeholder="Sua senha">
+            <div class="form-group row m-0 p-2">
+                <label for="senha" class="col-sm-2 col-form-label">Senha:</label>
+                <div class="col-sm-9">
+                    <input id="senha" class="form-control" type="password" placeholder="Sua senha">
+                </div>
+                <i id="senhaIcon" class="bi bi-eye-slash" onclick="visibilidadeDaSenha()"></i>
             </div>
-            <i id="senhaIcon" class="bi bi-eye-slash" onclick="visibilidadeDaSenha()"></i>
-        </div>
-        <div class="form-group row m-0 p-2">
-            <label for="tipo" class="col-sm-2 col-form-label" required>*Tipo do usuário:</label>
-            <div class="col-sm-10">
-                <select id="tipo" class="form-control">
-                    <option value="">Selecione seu tipo</option>
-                    <option value="1">Aluno</option>
-                    <option value="2">Empresa</option>
-                    <option value="3">Professor</option>
-                </select>
+            <div class="form-group row m-0 p-2">
+                <label for="tipo" class="col-sm-2 col-form-label" required>*Tipo do usuário:</label>
+                <div class="col-sm-10">
+                    <select id="tipo" class="form-control">
+                        <option value="">Selecione seu tipo</option>
+                        <option value="1">Aluno</option>
+                        <option value="2">Empresa</option>
+                        <option value="3">Professor</option>
+                    </select>
+                </div>
             </div>
+            <div class="botoes form-group row m-0 p-2">
+                <button type="button" class="btn btn-primary m-3" onclick="login()">Confirmar</button>
+                <button type="button" class="btn btn-danger m-3" onclick="levarCadastro()">Não tenho cadastro</button>
+            </div>
+        </form>
+        <div>
+            <h1 class="frase">Valorizando o esforço<br>
+                sonegando imposto...</h1>
         </div>
-        <div class="form-group row m-0 p-2">
-            <button type="button" class="btn btn-primary m-3" onclick="login()">Confirmar</button>
-            <button type="button" class="btn btn-danger m-3" onclick="levarCadastro()">Não tenho cadastro</button>
-        </div>
-    </form>
+    </main>
 </body>
+
 </html>
