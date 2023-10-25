@@ -17,6 +17,8 @@
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <!-- Main -->
 
+    <link rel="stylesheet" href="../css/index.css">
+
     <!-- Script -->
     <!-- Bootstrap v4.0 -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
@@ -36,23 +38,18 @@
     <title>Sistema</title>
 </head>
 
-<body class="text-center p-4" onload="estaLogado(-1)">
-    
-    <h1><a href="login.html">Login</a></h1>
-    <br>
-    <h1 onclick="levarPerfil()"><a href="#">Perfil</a></h1>
-    <br>
-    <h1><a href="cadastroAluno.html">Cadastro de Aluno</a></h1>
-    <br>
-    <h1><a href="cadastroEmpresa.html">Cadastro de Empresa</a></h1>
-    <br>
-    <h1><a href="todosAlunos.html">Visualizar Alunos</a></h1>
-    <br>
-    <h1><a href="todasEmpresas.html">Visualizar Empresas</a></h1>
-    <br>
-    <h1><a href="extratoProfessor.html">Visualizar Extrato Professor</a></h1>
-    <br>
-    <h1><a href="trasferir.html">Transferir</a></h1>
-    
+<!-- class="text-center p-4" -->
+<body  onload="estaLogado(-1)">
+    <div class="menu">
+        <h1 ><a class="opc" href="login.html">Login</a></h1>
+        <h1  onclick="levarPerfil()"><a class="opc" href="#">Perfil</a></h1>
+        <h1 ><a class="opc" href="cadastroAluno.html">Cadastro de Aluno</a></h1>
+        <h1 ><a class="opc" href="cadastroEmpresa.html">Cadastro de Empresa</a></h1>
+        <h1 ><a class="opc" href="todosAlunos.html">Visualizar Alunos</a></h1>
+        <h1 ><a class="opc" href="todasEmpresas.html">Visualizar Empresas</a></h1>
+        <h1 ><a class="opc" href="extratoProfessor.html">Visualizar Extrato Professor</a></h1>
+        <h1 ><a class="opc" href="trasferir.html">Transferir</a></h1>
+    </div>
 </body>
+
 </html>
