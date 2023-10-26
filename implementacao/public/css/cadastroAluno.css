@@ -1,0 +1,29 @@
+html {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+form {
+    width: 700px;
+    background-color: rgb(168, 194, 218);
+    padding: 40px;
+}
+
+.btn-primary {
+    width: 150px !important;
+}
+.form-group {
+    display: flex;
+    align-items: center;
+}
+.btn_cadastrar {
+    display: flex;
+    justify-content: center
+}
+.btn_inicio {
+    display: flex;
+    background-color: black;
+}

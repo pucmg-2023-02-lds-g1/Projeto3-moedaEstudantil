@@ -25,6 +25,7 @@ form {
     background-color: rgb(168, 194, 218);
     padding: 20px;
     padding-top: 40px;
+    /* border-radius: 10px; */
 }
 .botoes {
     width: 100%;

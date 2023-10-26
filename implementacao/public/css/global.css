@@ -1,5 +1,6 @@
 header {
     display: flex;
+    justify-content: space-between;
     position: fixed;
     top: 0;
     left: 0;
@@ -9,18 +10,66 @@ header {
     color: #fff; 
     padding: 10px; 
     z-index: 1000; 
+    /* background-color: rgb(233, 236, 53); */
     background-color: rgb(168, 194, 218);
     box-shadow: 0px 3px 8px rgb(104, 104, 104);
+    align-items: center;
 }
 .img_header {
     position: fixed;
     width: 150px;
     height: auto;
-    margin-top: -55px;
+    margin-top: -15px;
 }
 .nome_site {
     color: black;
     margin-left: 110px;
     font-family: Impact, fantasy;
     margin-bottom: 0px;
+}
+
+.btns_header {
+   display: flex;
+   flex-direction: row;
+   align-items: center;
+}
+.caixa_login, .caixa_perfil {
+    font-size: 35px;
+    margin-right: 40px;
+    margin-bottom: 0px;
+}
+.opc_login, .opc_perfil {
+    color: black !important;
+    margin: 10px;
+    padding: 5px;
+}
+.opc_login:hover, .opc_perfil:hover {
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    padding: 5px;
+    text-decoration: none;
+} 
+.icones {
+
+}
+.form-group {
+    display: flex;
+    align-items: center;
+}
+
+.inicio {
+    color: black;
+    text-decoration: none;
+}
+.inicio:hover {
+    color: #1b4f99;
+    text-decoration: none !important;
+}
+
+.titulo_pag {
+    width: auto;
+    margin: 0px;
+    margin-bottom: -7px;
+    font-family: Impact, fantasy;
+    margin-right: 10px;
 }

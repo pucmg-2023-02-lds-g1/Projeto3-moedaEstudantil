@@ -15,9 +15,18 @@
     <!-- Bootstrap v4.0 -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+ 
     <!-- Main -->
+    <link rel="stylesheet" href="../css/cadastroAluno.css">
+    <link rel="stylesheet" href="../css/global.css">
+    <!-- Icones fodas -->
+    <script src="https://kit.fontawesome.com/8f3c455873.js" crossorigin="anonymous"></script>
 
     <!-- Script -->
+
+    <!-- Icones fodas -->
+    <script src="https://kit.fontawesome.com/8f3c455873.js" crossorigin="anonymous"></script>
+
     <!-- Bootstrap v4.0 -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"
@@ -38,10 +47,23 @@
 </head>
 
 <body>
-    <div class="p-2">
-        <a href="index.html"><h1><i class="bi bi-arrow-left-circle mr-1"></i>Início</h1></a>
-    </div>
+    <!-- <i class="fa-solid fa-chalkboard-user fa-2xl" style="color: #000000;"></i> -->
+    <header>
+        <img class="img_header" src="../assets/pngFodaDeVerdade.png">
+        <h1 class="nome_site">Incentive coins</h1>
+        <div class="btns_header">
+            <i class="fa-solid fa-arrow-right-to-bracket fa-2xl" style="color: #000000;"></i><h1 class="caixa_login"><a class="opc_login" href="login.html">Login</a></h1>
+            <i class="fa-solid fa-user fa-2xl" style="color: #000000;"></i><h1 class="caixa_perfil" onclick="levarPerfil()"><a class="opc_perfil" href="#">Perfil</a></h1>
+        </div>
+    </header>
+
+    <h1 class="titulo_pag">Cadastro de empresa<i class="fa-regular fa-building fa-xs" style="color: #000000;"></i></h1>
     <form>
+
+        <div class="p-2">
+            <a class="inicio" href="index.html"><h1><i class="bi bi-arrow-left-circle mr-1"></i>Início</h1></a>
+        </div>
+
         <div class="form-group row m-0 p-2">
             <label for="nome" class="col-sm-2 col-form-label">Nome:</label>
             <div class="col-sm-10">
@@ -72,7 +94,7 @@
             <!-- Listar aqui as vantagens dessa empresa -->
         </div>
     
-        <div class="form-group row m-0 p-2">
+        <div class="btn_cadastrar form-group row m-0 p-2">
             <button type="button" class="btn btn-primary m-3" onclick="cadastrarEmpresa()">Confirmar</button>
         </div>
     </form>
