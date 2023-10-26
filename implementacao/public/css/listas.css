@@ -43,9 +43,15 @@ html {
     padding: 15px;
     margin: 10px;
     background-color: rgb(168, 194, 218);
-
     border: 1px solid rgb(93, 106, 119); 
-
+}
+#empresas .caixa_info {
+    width: 320px;
+    height: 150px;
+    padding: 15px;
+    margin: 10px;
+    background-color: rgb(168, 194, 218);
+    border: 1px solid rgb(93, 106, 119); 
 }
 p {
     margin: 0px;
@@ -60,6 +66,11 @@ p {
     margin-left: 10%;
 }
 #alunos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+#empresas {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
