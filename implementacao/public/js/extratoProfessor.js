@@ -10,6 +10,18 @@ async function getProfessor() {
     return dados;
 }
 
+async function getAlunos() {
+    let dados;
+    try {
+        const response = await fetch('http://localhost:3000/viewAllAlunos');
+        dados = await response.json();
+        console.log(dados);
+    } catch (error) {
+        console.error('Erro:', error);
+    }
+    return dados;
+}
+
 async function infoProfessor() {
     var usuario = JSON.parse(sessionStorage.getItem('usuario'));
     var dados = await getProfessor();
@@ -46,7 +58,7 @@ async function viewTransacoesProfessor() {
                 window.alert(`${data.tipo} - ${data.mensagem}`)
                 window.location.reload();
             } else {
-                innerHTMLTransacoes(data.transacoes)
+                innerHTMLTransacoes(data.transacoes);
                 console.log(data.transacoes);
             }
         })
@@ -54,14 +66,22 @@ async function viewTransacoesProfessor() {
 }
 
 async function innerHTMLTransacoes(data) {
+    
+
     for(var i=0; i< data.length; i++){
+        var dadosAluno = await infoAluno(data[i].Aluno_idAluno);
         document.querySelector('#listaTransacoes').innerHTML += ` 
         <div class="transacao">
-            <h4>Nome aluno: ${data[i].Aluno_idAluno}</h4>
+            <h4>Nome aluno: ${dadosAluno.nome}</h4>
             <p><strong>Valor:</strong> ${data[i].valor}</p>
             <p><strong>Descrição:</strong> ${data[i].descricao}</p>
         </div>
         <hr>
         `
     }
+}
+async function infoAluno(id) {
+    var dados = await getAlunos();
+    var dadosAluno = dados.alunos.find(aluno => aluno.idAluno == id);
+    return dadosAluno;
 }
