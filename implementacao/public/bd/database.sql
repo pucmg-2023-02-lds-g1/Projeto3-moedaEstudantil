@@ -152,12 +152,12 @@ CREATE TABLE IF NOT EXISTS `moedaEstudantil`.`Transacoes` (
   INDEX `fk_Transacoes_Professor1_idx` (`Professor_idProfessor` ASC) VISIBLE,
   CONSTRAINT `fk_Transacoes_Aluno1`
     FOREIGN KEY (`Aluno_idAluno`)
-    REFERENCES `mydb`.`Aluno` (`idAluno`)
+    REFERENCES `moedaestudantil`.`Aluno` (`idAluno`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Transacoes_Professor1`
     FOREIGN KEY (`Professor_idProfessor`)
-    REFERENCES `mydb`.`Professor` (`idProfessor`)
+    REFERENCES `moedaestudantil`.`Professor` (`idProfessor`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

@@ -14,7 +14,7 @@ app.use(express.static("public"))
 const connection = mysql.createConnection({
     host: "localhost",
     user: "root",
-    password: "",
+    password: "coxinha",
     database: "moedaestudantil",
 });
 
@@ -389,3 +389,19 @@ app.post('/transferirMoedas', (req, res) => {
     });
   });
 });
+
+app.post("/viewTransacoesProfessor", function(req, res){
+  connection.query(`SELECT * FROM Transacoes WHERE Professor_idProfessor = ?;`, [req.body.idProfessor],
+  (err, rows, fields) => {
+    if(err) {
+      return res.json({
+        tipo: "Erro ao retornar transações do Professor",
+        mensagem: err
+      })
+    }
+    
+    return res.json({
+      transacoes: rows
+    })
+  })
+})

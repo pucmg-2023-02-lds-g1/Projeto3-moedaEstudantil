@@ -27,3 +27,41 @@ async function extratoProfessor(){
         </div>
     `
 }
+
+async function viewTransacoesProfessor() {
+    let idProfessor = sessionStorage.getItem("usuario")
+    if(idProfessor){
+        idProfessor = JSON.parse(idProfessor).id
+    }
+
+    await fetch(`http://localhost:3000/viewTransacoesProfessor`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            idProfessor
+        })
+    }).then(function(res) {
+        res.json().then(function(data) {
+            if(!data.transacoes){
+                window.alert(`${data.tipo} - ${data.mensagem}`)
+                window.location.reload();
+            } else {
+                innerHTMLTransacoes(data.transacoes)
+                console.log(data.transacoes);
+            }
+        })
+    })
+}
+
+async function innerHTMLTransacoes(data) {
+    for(var i=0; i< data.length; i++){
+        document.querySelector('#listaTransacoes').innerHTML += ` 
+        <div class="transacao">
+            <h4>Nome aluno: ${data[i].Aluno_idAluno}</h4>
+            <p><strong>Valor:</strong> ${data[i].valor}</p>
+            <p><strong>Descrição:</strong> ${data[i].descricao}</p>
+        </div>
+        <hr>
+        `
+    }
+}
