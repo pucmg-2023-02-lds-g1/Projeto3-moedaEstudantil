@@ -18,8 +18,14 @@
     <!-- Main -->
 
     <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/global.css">
 
     <!-- Script -->
+
+    <!-- Icones fodas -->
+    <script src="https://kit.fontawesome.com/8f3c455873.js" crossorigin="anonymous"></script>
+
+
     <!-- Bootstrap v4.0 -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"
@@ -39,16 +45,26 @@
 </head>
 
 <!-- class="text-center p-4" -->
-<body  onload="estaLogado(-1)">
+
+<body onload="estaLogado(-1)">
+
+    <header>
+        <img class="img_header" src="../assets/pngFodaDeVerdade.png">
+        <h1 class="nome_site">Incentive coins</h1>
+        <div class="btns_header">
+            <i class="fa-solid fa-arrow-right-to-bracket fa-2xl" style="color: #000000;"></i><h1 class="caixa_login"><a class="opc_login" href="login.html">Login</a></h1>
+            <i class="fa-solid fa-user fa-2xl" style="color: #000000;"></i><h1 class="caixa_perfil" onclick="levarPerfil()"><a class="opc_perfil" href="#">Perfil</a></h1>
+        </div>
+    </header>
+
     <div class="menu">
-        <h1 ><a class="opc" href="login.html">Login</a></h1>
-        <h1  onclick="levarPerfil()"><a class="opc" href="#">Perfil</a></h1>
-        <h1 ><a class="opc" href="cadastroAluno.html">Cadastro de Aluno</a></h1>
-        <h1 ><a class="opc" href="cadastroEmpresa.html">Cadastro de Empresa</a></h1>
-        <h1 ><a class="opc" href="todosAlunos.html">Visualizar Alunos</a></h1>
-        <h1 ><a class="opc" href="todasEmpresas.html">Visualizar Empresas</a></h1>
-        <h1 ><a class="opc" href="extratoProfessor.html">Visualizar Extrato Professor</a></h1>
-        <h1 ><a class="opc" href="trasferir.html">Transferir</a></h1>
+
+        <h1 class="caixa_opc"><a class="opc" href="cadastroAluno.html">Cadastro de Aluno</a></h1>
+        <h1 class="caixa_opc"><a class="opc" href="cadastroEmpresa.html">Cadastro de Empresa</a></h1>
+        <h1 class="caixa_opc"><a class="opc" href="todosAlunos.html">Visualizar Alunos</a></h1>
+        <h1 class="caixa_opc"><a class="opc" href="todasEmpresas.html">Visualizar Empresas</a></h1>
+        <h1 class="caixa_opc"><a class="opc" href="extratoProfessor.html">Visualizar Extrato Professor</a></h1>
+        <h1 class="caixa_opc"><a class="opc" href="trasferir.html">Transferir moedas para aluno</a></h1>
     </div>
 </body>
 
