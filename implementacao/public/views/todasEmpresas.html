@@ -2,18 +2,84 @@
 <html>
 
 <head>
-    <title>Visualizar todas as empresas</title>
+    <!-- Metadata -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="copyright" content="© 2023 PUC Minas" />
+    <meta name="authors"
+        content="Amanda M de Souza, Guilherme D Silva, Luiz Gustavo M Santos, Pedro R Vidigal, Giovanni B S Duarte, Vitor N Calhau" />
+    <meta name="description" content="Sistema de moeda estudantil" />
+    <meta name="keywords" content="gamificação, estudante, moeda, parceria" />
+    <!-- Style -->
+    <!-- Bootstrap v4.0 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Main -->
+    <!-- <link rel="stylesheet" href="../css/cadastroAluno.css"> -->
+    <link rel="stylesheet" href="../css/global.css">
     <link rel="stylesheet" href="../css/listas.css">
+
+    <!-- Icones fodas -->
+    <script src="https://kit.fontawesome.com/8f3c455873.js" crossorigin="anonymous"></script>
+
+    <!-- Script -->
+
+    <!-- Icones fodas -->
+    <script src="https://kit.fontawesome.com/8f3c455873.js" crossorigin="anonymous"></script>
+
+    <!-- Bootstrap v4.0 -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"
+        defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"
+        defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"
+        defer></script>
+    <!-- Main -->
     <script src="../js/main.js" defer></script>
     <script src="../js/aluno.js" defer></script>
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.2/font/bootstrap-icons.css">
+    <!-- Título da página -->
+    <title>Visualizar todas as empresas</title>
 </head>
 
 <body onload="estaLogado(0)">
-    <div class="p-2">
-        <a href="index.html"><h1><i class="bi bi-arrow-left-circle mr-1"></i>Início</h1></a>
+
+    <header>
+        <img class="img_header" src="../assets/pngFodaDeVerdade.png">
+        <h1 class="nome_site">Incentive coins</h1>
+        <div class="btns_header">
+            <i class="fa-solid fa-arrow-right-to-bracket fa-2xl" style="color: #000000;"></i>
+            <h1 class="caixa_login"><a class="opc_login" href="login.html">Login</a></h1>
+            <i class="fa-solid fa-user fa-2xl" style="color: #000000;"></i>
+            <h1 class="caixa_perfil" onclick="levarPerfil()"><a class="opc_perfil" href="#">Perfil</a></h1>
+        </div>
+    </header>
+
+    <div class="nome_pag_inicio">
+        <div class="p-2">
+            <a href="index.html">
+                <a class="inicio" href="index.html"><h1><i class="bi bi-arrow-left-circle mr-1"></i>Início</h1></a>
+
+            </a>
+        </div>
+        <h1 class="titulo_pag">Empresas Cadastradas<i class="icon fa-solid fa-city fa-sm" style="color: #000000;"></i></h1>
     </div>
-    <h1>Empresas Cadastradas</h1>
+
     <div id="empresas"></div>
+
+    <!-- <div id="alunosx">
+        
+    </div> -->
+    
+    
+
+
 
     <script>
         function viewAllEmpresas() {
@@ -27,7 +93,14 @@
                     } else {
                         let empresasDiv = document.getElementById('empresas');
                         data.empresas.forEach(empresa => {
-                            empresasDiv.innerHTML += `<p>Nome: ${empresa.nome},   CNPJ: ${empresa.cnpj},   Email: ${empresa.email}</p>`;
+                            empresasDiv.innerHTML += `<div class="caixa_info">
+            <p class="nome"><b>Nome:</b> ${empresa.nome}</p>
+            <div class="dados">
+                <p class="info"><b>CNPJ:</b> ${empresa.cnpj}</p>
+                <p class="info"><b>Email:</b> ${empresa.email}</p>
+            </div>
+
+        </div>`;
                         });
                     }
                 })
