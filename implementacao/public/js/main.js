@@ -101,34 +101,73 @@ function levarHome() {
 }
 
 
-function alunosDoProfessor() {
-    let id=sessionStorage.getItem('id');
-    fetch("http://localhost:3000/viewProfessor", {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-            id:id,
-        })
+async function alunosDoProfessor() {
+    let usuario = JSON.parse(sessionStorage.getItem('usuario'));
+    let id = usuario.id;
+  
+    console.log(id);
+  
+    try {
+      const response = await fetch("http://localhost:3000/viewAlunosDoProfessor", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id: id }),
+      });
+  
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+  
+      const data = await response.json();
+  
+      console.log(data.alunos[0].idAluno);
+  
+      const alunos_do_professor = document.getElementById("alunos_do_professor");
+      
+      data.alunos.forEach(async (aluno) => {
+        const moedas = await moedasDoAluno(aluno.idAluno);
         
-    }).then(function (res) {
-
-        res.json().then(function (data) {
-            console.log(JSON.stringify(`${data.parceiro.nome}`))
-
-            const nome= document.getElementById("nome")
-            nome.innerHTML =`
-            <div class="card" style="width: 18rem;">
+        alunos_do_professor.innerHTML += `
+          <div class="card" style="width: 18rem;">
             <div class="card-body">
-              <h5 class="card-title">Nome: ${data.aluno.nome}</h5>
-              <p class="card-text">Email: ${data.aluno.email}</p>
-              <p class="card-text">Moedas: ${data.aluno.moeda}</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
+              <h5 class="card-title">Nome: ${aluno.nome}</h5>
+              <p class="card-text">Email: ${aluno.email}</p>
+              <p class="card-text">Moedas:<b> ${moedas} </b></p>
+              <p class="card-text">Transferir moedas: <input class="input_val" type="number" step="1"></p>
+              <div class="btn_box">
+                <a href="#" class="btn btn-primary">Transferir</a>
+              </div>
             </div>
           </div>
-            `
-            sessionStorage.setItem('parceiro',JSON.stringify(data.parceiro))
-        });
-    })
+        `;
+      });
+  
+      sessionStorage.setItem("parceiro", JSON.stringify(data.parceiro));
+    } catch (error) {
+      console.error("Erro ao buscar alunos do professor:", error);
+    }
+  }
+
+  async function moedasDoAluno(id) {
+    try {
+      const response = await fetch("http://localhost:3000/viewMoedasAluno", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id: id }),
+      });
+  
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+  
+      const data = await response.json();
+  
+      console.log(data.alunos[0].moeda);
+      return data.alunos[0].moeda;
+    } catch (error) {
+      console.error("Erro ao buscar moedas do aluno:", error);
+      return 0; // Retorna um valor padrão (por exemplo, 0) em caso de erro
+    }
   }
 
   

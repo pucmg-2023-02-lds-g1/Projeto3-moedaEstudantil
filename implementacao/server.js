@@ -14,8 +14,13 @@ app.use(express.static("public"))
 const connection = mysql.createConnection({
     host: "localhost",
     user: "root",
+<<<<<<< Updated upstream
     password: "coxinha",
     database: "moedaestudantil",
+=======
+    password: "",
+    database: "mydb",
+>>>>>>> Stashed changes
 });
 
 //INICIALIZATION CONNECTION WITH DATABASE
@@ -212,6 +217,7 @@ app.get("/viewAllAlunos", function(req, res){
 })
 
 app.get("/viewAllEmpresas", function(req, res){
+
   connection.query(`SELECT * FROM empresa;`,
   (err, rows, fields) => {
     if(err) {
@@ -349,21 +355,52 @@ app.get("/getProfessor", function(req, res){
   })
 })
 
-app.post("/viewAlunosDoProfessor", function(req, res){
-  connection.query(`SELECT * FROM aluno INNER JOIN professor on aluno.Instituicao_id = professor.Instituicao_id WHERE professor.Instituicao_id="${req.body.id}";`,
-  (err, rows, fields) => {
-    if(err) {
-      return res.json({
-        tipo: "Erro ao retornar alunos do professor",
-        mensagem: err
-      })
-    }
+app.post("/viewAlunosDoProfessor", function (req, res) {
+
+  connection.query(
+    `SELECT aluno.idAluno, aluno.nome, aluno.email FROM aluno INNER JOIN professor on aluno.Instituicao_id = professor.Instituicao_id WHERE professor.Instituicao_id =  ${req.body.id};`,
     
-    return res.json({
-      alunos: rows
-    })
-  })
-})
+    (err, rows, fields) => {
+      if (err) {
+        return res.json({
+          tipo: "Erro ao retornar alunos do professor",
+          mensagem: err,
+        });
+      }
+      
+      console.log(rows)
+
+      return res.json({
+        alunos: rows,
+      });
+    }
+  );
+});
+
+app.post("/viewMoedasAluno", function (req, res) {
+
+  console.log("abacaxi")
+  console.log(req.body.id)
+
+  connection.query(
+    `SELECT idAluno, moeda FROM aluno WHERE idAluno =  ${req.body.id};`,
+    
+    (err, rows, fields) => {
+      if (err) {
+        return res.json({
+          tipo: "Erro ao retornar a quantidade de moedas dos alunos",
+          mensagem: err,
+        });
+      }
+      
+      console.log(rows)
+
+      return res.json({
+        alunos: rows,
+      });
+    }
+  );
+});
 
 app.post('/transferirMoedas', (req, res) => {
   const { professorId, alunoId, quantidade } = req.body;
