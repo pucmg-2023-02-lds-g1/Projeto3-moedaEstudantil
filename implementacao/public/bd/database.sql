@@ -193,4 +193,29 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 INSERT into instituicao values (NULL, "puc");
 insert into curso values (NULL, "curso1");
-insert into Professor values (NULL, "josé", "11111111111", "j@gmail.com", "123", "1123", "rua l", NULL, 1);
+-- insert into Professor values (NULL, "josé", "11111111111", "j@gmail.com", "123", "1123", "rua l", NULL, 1);
+-- Insert Professors
+INSERT INTO `moedaEstudantil`.`Professor` (`nome`, `cpf`, `email`, `senha`, `rg`, `endereco`, `moeda`, `Instituicao_id`) VALUES ('Professor1', '111.111.111-11', 'professor1@email.com', 'senha1', '11.111.111-1', 'Endereco 1', 100, 1);
+INSERT INTO `moedaEstudantil`.`Professor` (`nome`, `cpf`, `email`, `senha`, `rg`, `endereco`, `moeda`, `Instituicao_id`) VALUES ('Professor2', '222.222.222-22', 'professor2@email.com', 'senha2', '22.222.222-2', 'Endereco 2', 200, 1);
+INSERT INTO `moedaEstudantil`.`Professor` (`nome`, `cpf`, `email`, `senha`, `rg`, `endereco`, `moeda`, `Instituicao_id`) VALUES ('Professor3', '333.333.333-33', 'professor3@email.com', 'senha3', '33.333.333-3', 'Endereco 3', 300, 1);
+INSERT INTO `moedaEstudantil`.`Professor` (`nome`, `cpf`, `email`, `senha`, `rg`, `endereco`, `moeda`, `Instituicao_id`) VALUES ('Professor4', '444.444.444-44', 'professor4@email.com', 'senha4', '44.444.444-4', 'Endereco 4', 400, 1);
+INSERT INTO `moedaEstudantil`.`Professor` (`nome`, `cpf`, `email`, `senha`, `rg`, `endereco`, `moeda`, `Instituicao_id`) VALUES ('Professor5', '555.555.555-55', 'professor5@email.com', 'senha5', '55.555.555-5', 'Endereco 5', 500, 1);
+
+-- Insert Alunos
+INSERT INTO `moedaEstudantil`.`Aluno` (`nome`,`senha`,`email`,`cpf`,`rg`,`endereco`,`moeda`,`Curso_idCurso`,`Instituicao_id`) VALUES ('Aluno1','senha1','aluno1@email.com','111.111.111-11','11.111.111-1','Endereco 1',100,1,1);
+INSERT INTO `moedaEstudantil`.`Aluno` (`nome`,`senha`,`email`,`cpf`,`rg`,`endereco`,`moeda`,`Curso_idCurso`,`Instituicao_id`) VALUES ('Aluno2','senha2','aluno2@email.com','222.222.222-22','22.222.222-2','Endereco 2',200,1,1);
+INSERT INTO `moedaEstudantil`.`Aluno` (`nome`,`senha`,`email`,`cpf`,`rg`,`endereco`,`moeda`,`Curso_idCurso`,`Instituicao_id`) VALUES ('Aluno3','senha3','aluno3@email.com','333.333.333-33','33.333.333-3','Endereco 3',300,1,1);
+INSERT INTO `moedaEstudantil`.`Aluno` (`nome`,`senha`,`email`,`cpf`,`rg`,`endereco`,`moeda`,`Curso_idCurso`,`Instituicao_id`) VALUES ('Aluno4','senha4','aluno4@email.com','444.444.444-44','44.444.444-4','Endereco 4',400,1,1);
+INSERT INTO `moedaEstudantil`.`Aluno` (`nome`,`senha`,`email`,`cpf`,`rg`,`endereco`,`moeda`,`Curso_idCurso`,`Instituicao_id`) VALUES ('Aluno5','senha5','aluno5@email.com','555.555.555-55','55.555.555-5','Endereco 5',500,1,1);
+INSERT INTO `moedaEstudantil`.`Aluno` (`nome`,`senha`,`email`,`cpf`,`rg`,`endereco`,`moeda`,`Curso_idCurso`,`Instituicao_id`) VALUES ('Aluno6','senha6','aluno6@email.com','666.666.666-66','66.666.666-6','Endereco 6',600,1,1);
+INSERT INTO `moedaEstudantil`.`Aluno` (`nome`,`senha`,`email`,`cpf`,`rg`,`endereco`,`moeda`,`Curso_idCurso`,`Instituicao_id`) VALUES ('Aluno7','senha7','aluno7@email.com','777.777.777-77','77.777.777-7','Endereco 7',700,1,1);
+INSERT INTO `moedaEstudantil`.`Aluno` (`nome`,`senha`,`email`,`cpf`,`rg`,`endereco`,`moeda`,`Curso_idCurso`,`Instituicao_id`) VALUES ('Aluno8','senha8','aluno8@email.com','888.888.888-88','88.888.888-8','Endereco 8',800,1,1);
+INSERT INTO `moedaEstudantil`.`Aluno` (`nome`,`senha`,`email`,`cpf`,`rg`,`endereco`,`moeda`,`Curso_idCurso`,`Instituicao_id`) VALUES ('Aluno9','senha9','aluno9@email.com','999.999.999-99','99.999.999-9','Endereco 9',900,1,1);
+INSERT INTO `moedaEstudantil`.`Aluno` (`nome`,`senha`,`email`,`cpf`,`rg`,`endereco`,`moeda`,`Curso_idCurso`,`Instituicao_id`) VALUES ('Aluno10', 'senha10', 'aluno10@email.com', '1010101010-10', '10.10101010-10', 'Endereco 10', 1000, 1, 1);
+
+-- Insert Transacoes
+INSERT INTO moedaEstudantil.Transacoes (valor, descricao, Aluno_idAluno, Professor_idProfessor) VALUES (10, "Transacao 1", 1, 1);
+INSERT INTO moedaEstudantil.Transacoes (valor, descricao, Aluno_idAluno, Professor_idProfessor) VALUES (20, "Transacao 2", 2, 2);
+INSERT INTO moedaEstudantil.Transacoes (valor, descricao, Aluno_idAluno, Professor_idProfessor) VALUES (30, "Transacao 3", 3, 3);
+INSERT INTO moedaEstudantil.Transacoes (valor, descricao, Aluno_idAluno, Professor_idProfessor) VALUES (40, "Transacao 4", 4, 4);
+INSERT INTO moedaEstudantil.Transacoes (valor, descricao, Aluno_idAluno, Professor_idProfessor) VALUES (50, "Transacao 5", 5, 5);
