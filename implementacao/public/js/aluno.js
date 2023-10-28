@@ -1,11 +1,11 @@
 function updateAluno() {
     let id = sessionStorage.getItem("usuario")
-    if(id){
+    if (id) {
         id = JSON.parse(id).id
     }
-    
+
     let nome, cpf, email, endereco, instituicao, curso, senha;
-    
+
     nome = document.getElementById("nome").value
     cpf = document.getElementById("cpf").value
     email = document.getElementById("email").value
@@ -20,10 +20,10 @@ function updateAluno() {
         body: JSON.stringify({
             id, nome, cpf, email, endereco, instituicao, curso, senha
         })
-    }).then(function(res) {
-        res.json().then(function(data) {
+    }).then(function (res) {
+        res.json().then(function (data) {
             window.alert(`${data.tipo} - ${data.mensagem}`)
-            if(data.s){
+            if (data.s) {
                 window.location.reload();
             }
         })
@@ -32,7 +32,7 @@ function updateAluno() {
 
 function viewAluno() {
     let id = sessionStorage.getItem("usuario")
-    if(id){
+    if (id) {
         id = JSON.parse(id).id
     }
 
@@ -44,9 +44,9 @@ function viewAluno() {
         body: JSON.stringify({
             id
         })
-    }).then(function(res) {
-        res.json().then(function(data) {
-            if(!data.aluno){
+    }).then(function (res) {
+        res.json().then(function (data) {
+            if (!data.aluno) {
                 window.alert(`${data.tipo} - ${data.mensagem}`)
                 window.location.reload();
             } else {
@@ -63,6 +63,8 @@ function viewAluno() {
             document.getElementById("moeda").value = moeda
         })
     })
+
+
 }
 
 function deletarAluno() {
@@ -88,7 +90,7 @@ function deletarAluno() {
 }
 
 function cadastrarAluno() {
-    
+
     let nome = document.getElementById("nome").value
     let cpf = document.getElementById("cpf").value
     let email = document.getElementById("email").value
@@ -103,10 +105,10 @@ function cadastrarAluno() {
         body: JSON.stringify({
             nome, cpf, email, endereco, instituicao, curso, senha
         })
-    }).then(function(res) {
-        res.json().then(function(data) {
+    }).then(function (res) {
+        res.json().then(function (data) {
             window.alert(`${data.tipo} - ${data.mensagem}`)
-            if(data.s){
+            if (data.s) {
                 window.location.assign("login.html");
             }
         })
@@ -117,9 +119,9 @@ function viewAllAlunos() {
     fetch(`http://localhost:3000/viewAllAlunos`, {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' },
-    }).then(function(res) {
-        res.json().then(function(data) {
-            if(!data.alunos){
+    }).then(function (res) {
+        res.json().then(function (data) {
+            if (!data.alunos) {
                 window.alert(`${data.tipo} - ${data.mensagem}`)
             } else {
                 data.alunos.forEach(aluno => {
@@ -144,6 +146,76 @@ function pesquisarInstituicoes() {
             for (let i = 0; i < data.length; i++) {
                 $("#instituicao").append('<option value="' + data[i].id + '">' + data[i].nome + '</option>');
             }
+        })
+    })
+}
+
+function mostraExtrato() {
+    let id = sessionStorage.getItem("usuario")
+    if (id) {
+        id = JSON.parse(id).id
+    }
+
+    fetch(`http://localhost:3000/viewAluno`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            id
+        })
+    }).then(function (res) {
+        res.json().then(function (data) {
+            if (!data.aluno) {
+                window.alert(`${data.tipo} - ${data.mensagem}`)
+                window.location.reload();
+            } else {
+                document.querySelector('#infoAluno').innerHTML = ` 
+                    <h3 class="nome">Nome: ${data.aluno.nome}</h1>
+                    <p class="moedas">Número de moedas: ${data.aluno.moeda}</p>
+            `
+            }
+
+        })
+    })
+
+
+}
+
+
+function pegarExtratoAluno() {
+    var aluno = sessionStorage.getItem('usuario')
+    var id;
+    if (aluno) {
+        id = JSON.parse(aluno).id
+    }
+    
+
+    fetch(`http://localhost:3000/pesquisarExtratoAluno`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            id
+        })
+    }).then(function (res) {
+        res.json().then(function (data) {
+            if (!data.transacoes) {
+                window.alert(`${data.tipo} - ${data.mensagem}`)
+                window.location.reload();
+            } else {
+                var campo = document.getElementById('transacoes');
+                for (let i = 0; i < data.transacoes.length; i++) {
+                    campo.innerHTML += `
+                    <div class="transacao" style="width: 18rem;">
+                    <div class="card-body">
+                        <h4 class="card-title">${data.transacoes[i].nomeProfessor}</h4>
+                        <p class="card-subtitle mb-2 text-muted">${data.transacoes[i].valor}<p>
+                        <p class="card-text">${data.transacoes[i].descricao}</p>
+                    </div>
+                </div>
+                    `
+                }
+
+            }
+
         })
     })
 }
