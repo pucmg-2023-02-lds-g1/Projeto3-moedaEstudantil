@@ -1,0 +1,23 @@
+header{
+    position:relative !important;
+}
+
+
+.container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content:center; 
+}
+
+.transacoes{
+    display: flex;
+    flex-direction: row;
+}
+
+.transacao{
+   background-color: rgb(168, 194, 218);;
+   justify-content: space-between;
+   margin: 2%;
+}
+
