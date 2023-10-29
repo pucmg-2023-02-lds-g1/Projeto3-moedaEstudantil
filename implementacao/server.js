@@ -15,7 +15,7 @@ const connection = mysql.createConnection({
     host: "localhost",
     user: "root",
     password: "",
-    database: "moedaestudantil",
+    database: "mydb",
 });
 
 //INICIALIZATION CONNECTION WITH DATABASE
@@ -363,7 +363,7 @@ app.post("/viewAlunosDoProfessor", function (req, res) {
         });
       }
       
-      console.log(rows)
+      // console.log(rows)
 
       return res.json({
         alunos: rows,
@@ -374,8 +374,8 @@ app.post("/viewAlunosDoProfessor", function (req, res) {
 
 app.post("/viewMoedasAluno", function (req, res) {
 
-  console.log("abacaxi")
-  console.log(req.body.id)
+  // console.log("abacaxi")
+  // console.log(req.body.id)
 
   connection.query(
     `SELECT idAluno, moeda FROM aluno WHERE idAluno =  ${req.body.id};`,
@@ -388,7 +388,7 @@ app.post("/viewMoedasAluno", function (req, res) {
         });
       }
       
-      console.log(rows)
+      // console.log(rows)
 
       return res.json({
         alunos: rows,
@@ -398,29 +398,40 @@ app.post("/viewMoedasAluno", function (req, res) {
 });
 
 app.post('/transferirMoedas', (req, res) => {
+  console.log("cheguei aki")
   const { professorId, alunoId, quantidade } = req.body;
 
-  const sqlVerificar = 'SELECT moedas FROM professores WHERE id = ?';
+  // Verificar se o professor tem moedas suficientes
+  const sqlVerificar = `SELECT moeda FROM Professor WHERE idProfessor = ?;`;
   connection.query(sqlVerificar, professorId, (err, results) => {
     if (err) throw err;
 
-    if (results[0].moedas < quantidade) {
+    if (results.length === 0 || results[0].moeda < quantidade) {
       return res.status(400).send('O professor não tem moedas suficientes');
     }
 
-    const sqlTransferir = 'UPDATE professores SET moedas = moedas - ? WHERE id = ?; UPDATE alunos SET moedas = moedas + ? WHERE id = ?';
-    connection.query(sqlTransferir, [quantidade, professorId, quantidade, alunoId], (err, results) => {
+    // Deduzir moedas do professor
+    const sqlTransferirProfessor = `UPDATE Professor SET moeda = moeda - ? WHERE idProfessor = ?;`;
+    connection.query(sqlTransferirProfessor, [quantidade, professorId], (err, results) => {
       if (err) throw err;
 
-      const sqlTransacao = 'INSERT INTO transacoes (professorId, alunoId, valor) VALUES (?, ?, ?)';
-      connection.query(sqlTransacao, [professorId, alunoId, quantidade], (err, results) => {
+      // Adicionar moedas ao aluno
+      const sqlTransferirAluno = `UPDATE Aluno SET moeda = moeda + ? WHERE idAluno = ?;`;
+      connection.query(sqlTransferirAluno, [quantidade, alunoId], (err, results) => {
         if (err) throw err;
 
-        res.send('Transferência de moedas realizada com sucesso!');
+        // Registrar a transação
+        const sqlTransacao = `INSERT INTO transacoes (Professor_idProfessor, Aluno_idAluno, valor) VALUES (?, ?, ?);`;
+        connection.query(sqlTransacao, [professorId, alunoId, quantidade], (err, results) => {
+          if (err) throw err;
+
+          res.send('Transferência de moedas realizada com sucesso!');
+        });
       });
     });
   });
 });
+
 
 app.post("/viewTransacoesProfessor", function(req, res){
   connection.query(`SELECT * FROM Transacoes WHERE Professor_idProfessor = ?;`, [req.body.idProfessor],
@@ -464,7 +475,7 @@ connection.query(`SELECT * FROM Transacoes WHERE Aluno_idAluno = ?;`, [req.body.
   connection.query(`SELECT idProfessor, nome FROM Professor WHERE idProfessor IN (${professorIDsString});`, (err, professorRows, fields) => {
     if (err) {
       return res.json({
-        tipo: "Erro ao retornar nomes dos professores",
+        tipo: "Erro ao retornar nomes dos Professor",
         mensagem: err
       });
     }
