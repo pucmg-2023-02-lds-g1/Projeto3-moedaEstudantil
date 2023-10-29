@@ -107,7 +107,7 @@ async function alunosDoProfessor() {
   let usuario = JSON.parse(sessionStorage.getItem('usuario'));
   let id = usuario.id;
 
-  console.log(id);
+//   console.log(id);
 
   try {
     const response = await fetch("http://localhost:3000/viewAlunosDoProfessor", {
@@ -122,12 +122,14 @@ async function alunosDoProfessor() {
 
     const data = await response.json();
 
-    console.log(data.alunos[0].idAluno);
+    // console.log(data.alunos[0].idAluno);
 
     const alunos_do_professor = document.getElementById("alunos_do_professor");
 
     data.alunos.forEach(async (aluno) => {
       const moedas = await moedasDoAluno(aluno.idAluno);
+    //   let idAluno = aluno.idAluno
+    //   console.log(idAluno)
 
       alunos_do_professor.innerHTML += `
           <div class="card" style="width: 18rem;">
@@ -135,9 +137,9 @@ async function alunosDoProfessor() {
               <h5 class="card-title">Nome: ${aluno.nome}</h5>
               <p class="card-text">Email: ${aluno.email}</p>
               <p class="card-text">Moedas:<b> ${moedas} </b></p>
-              <p class="card-text">Transferir moedas: <input class="input_val" type="number" step="1"></p>
+              <p class="card-text">Transferir moedas: <input name="idAlunoValor_${aluno.idAluno}" class="input_val" type="number" step="1"></p>
               <div class="btn_box">
-                <a href="#" class="btn btn-primary">Transferir</a>
+                <button onclick="transferirMoedas(${aluno.idAluno})" href="#" class="btn btn-primary">Transferir</button>
               </div>
             </div>
           </div>
@@ -164,7 +166,7 @@ async function moedasDoAluno(id) {
 
     const data = await response.json();
 
-    console.log(data.alunos[0].moeda);
+    // console.log(data.alunos[0].moeda);
     return data.alunos[0].moeda;
   } catch (error) {
     console.error("Erro ao buscar moedas do aluno:", error);
@@ -172,18 +174,39 @@ async function moedasDoAluno(id) {
   }
 }
 
+document.getElementById('form').addEventListener('submit', function (event) {
+    event.preventDefault(); // Impede o envio do formulário
+    // Faça o que desejar aqui
+  });
 
-function transferirMoedas(professorId, alunoId, quantidade) {
-  fetch('/transferirMoedas', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ professorId, alunoId, quantidade }),
-  })
-    .then(response => response.text())
-    .then(data => alert(data))
-    .catch((error) => {
-      console.error('Erro:', error);
-    });
-}
+function transferirMoedas(alunoId) {
+
+    // console.log(document.getElementById("idAlunoValor_"+alunoId))
+    console.log(alunoId)
+
+    const inputs = document.getElementsByName("idAlunoValor_"+alunoId);
+    const meuInput = inputs[0];
+    const valor = meuInput.value;
+
+    console.log(valor);
+    // console.log(valor)
+
+    let quantidade = document.getElementById("idAlunoValor_"+alunoId);
+    let usuario = JSON.parse(sessionStorage.getItem('usuario'));
+    let professorId = usuario.id;
+
+    fetch('/transferirMoedas', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ professorId, alunoId, quantidade }),
+    })
+      .then(response => response.text())
+      .then(data => alert(data))
+      .catch((error) => {
+        console.error('Erro:', error);
+      });
+  }
+
+  

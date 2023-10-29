@@ -15,7 +15,7 @@ const connection = mysql.createConnection({
     host: "localhost",
     user: "root",
     password: "",
-    database: "moedaestudantil",
+    database: "mydb",
 });
 
 //INICIALIZATION CONNECTION WITH DATABASE
@@ -363,7 +363,7 @@ app.post("/viewAlunosDoProfessor", function (req, res) {
         });
       }
       
-      console.log(rows)
+      // console.log(rows)
 
       return res.json({
         alunos: rows,
@@ -374,8 +374,8 @@ app.post("/viewAlunosDoProfessor", function (req, res) {
 
 app.post("/viewMoedasAluno", function (req, res) {
 
-  console.log("abacaxi")
-  console.log(req.body.id)
+  // console.log("abacaxi")
+  // console.log(req.body.id)
 
   connection.query(
     `SELECT idAluno, moeda FROM aluno WHERE idAluno =  ${req.body.id};`,
@@ -388,7 +388,7 @@ app.post("/viewMoedasAluno", function (req, res) {
         });
       }
       
-      console.log(rows)
+      // console.log(rows)
 
       return res.json({
         alunos: rows,
@@ -398,6 +398,7 @@ app.post("/viewMoedasAluno", function (req, res) {
 });
 
 app.post('/transferirMoedas', (req, res) => {
+  console.log("cheguei aki")
   const { professorId, alunoId, quantidade } = req.body;
 
   const sqlVerificar = 'SELECT moedas FROM professores WHERE id = ?';
