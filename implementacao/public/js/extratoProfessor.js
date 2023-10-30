@@ -71,12 +71,13 @@ async function innerHTMLTransacoes(data) {
     for(var i=0; i< data.length; i++){
         var dadosAluno = await infoAluno(data[i].Aluno_idAluno);
         document.querySelector('#listaTransacoes').innerHTML += ` 
-        <div class="transacao">
-            <h4>Nome aluno: ${dadosAluno.nome}</h4>
-            <p><strong>Valor:</strong> ${data[i].valor}</p>
-            <p><strong>Descrição:</strong> ${data[i].descricao}</p>
+      <div class="transacao">
+        <h4>Nome aluno: ${dadosAluno.nome}</h4>
+        <div class="infos">
+          <p><strong>Valor:</strong> ${data[i].valor}</p>
+          <p><strong>Descrição:</strong> ${data[i].descricao}</p>
         </div>
-        <hr>
+      </div>
         `
     }
 }

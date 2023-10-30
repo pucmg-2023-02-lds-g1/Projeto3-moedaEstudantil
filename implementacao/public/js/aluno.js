@@ -204,13 +204,15 @@ function pegarExtratoAluno() {
                 var campo = document.getElementById('transacoes');
                 for (let i = 0; i < data.transacoes.length; i++) {
                     campo.innerHTML += `
-                    <div class="transacao" style="width: 18rem;">
-                    <div class="card-body">
-                        <h4 class="card-title">${data.transacoes[i].nomeProfessor}</h4>
-                        <p class="card-subtitle mb-2 text-muted">${data.transacoes[i].valor}<p>
-                        <p class="card-text">${data.transacoes[i].descricao}</p>
-                    </div>
-                </div>
+                    <div id="transacoes">
+      <div class="transacao">
+        <div class="infos">
+          <p><strong>Nome Professor:</strong> ${data.transacoes[i].nomeProfessor}</p>
+          <p><strong>Valor:</strong> ${data.transacoes[i].valor}</p>
+          <p><strong>Descrição:</strong> ${data.transacoes[i].descricao}</p>
+        </div>
+      </div>
+    </div>
                     `
                 }
 
