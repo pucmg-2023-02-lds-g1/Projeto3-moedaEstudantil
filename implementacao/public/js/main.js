@@ -174,10 +174,10 @@ function visibilidadeDaSenha() {
     }
   }
   
-  document.getElementById('form').addEventListener('submit', function (event) {
-      event.preventDefault(); // Impede o envio do formulário
-      // Faça o que desejar aqui
-    });
+  // document.getElementById('form').addEventListener('submit', function (event) {
+  //     event.preventDefault(); // Impede o envio do formulário
+  //     // Faça o que desejar aqui
+  //   });
   
   function transferirMoedas(alunoId) {
   
@@ -216,4 +216,22 @@ function visibilidadeDaSenha() {
 
         console.log("morte")
 
+    }
+
+    function modificaMenu() {
+      let usuario = JSON.parse(sessionStorage.getItem('usuario'));
+      let tipoUsu = usuario.tipo;
+
+      if(tipoUsu==1) {
+        document.getElementById("menu_opc_5").style.display = "none";
+        document.getElementById("menu_opc_7").style.display = "none";
+      }
+      if(tipoUsu==3) {
+        document.getElementById("menu_opc_6").style.display = "none";
+      }
+      if(tipoUsu==2) {
+        document.getElementById("menu_opc_5").style.display = "none";
+        document.getElementById("menu_opc_6").style.display = "none";
+        document.getElementById("menu_opc_7").style.display = "none";
+      }
     }

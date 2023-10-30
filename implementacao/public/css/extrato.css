@@ -1,0 +1,26 @@
+.transacao {
+    width: 400px;
+    height: 170px;
+    padding: 15px;
+    margin: 10px;
+    background-color: rgb(168, 194, 218);
+    border: 1px solid rgb(93, 106, 119); 
+}
+
+.infos {
+    padding: 10px;
+}
+.infos p {
+    margin-bottom: 3px;
+}
+
+form {
+    margin-top: 85px;
+}
+.paginas_info {
+    margin-left: 10%;
+}
+
+#infoAluno {
+    padding: 40px;
+}
