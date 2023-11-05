@@ -536,7 +536,7 @@ app.post("/cadastrarVantagem", function (req, res) {
   console.log(req.body.nome)
   console.log(req.body.desc)
   console.log(req.body.preco)
-  connection.query(`INSERT INTO vantagens (idVantagem, nome, descricao, foto, Empresa_id, Preco) values (default, "${req.body.nome}", "${req.body.desc}", NULL, "${req.body.idEmpresa}", "${req.body.preco}");`,
+  connection.query(`INSERT INTO vantagens (idVantagem, nome, descricao, foto, Empresa_id, Preco) values (default, "${req.body.nome}", "${req.body.desc}", "${req.body.url}", "${req.body.idEmpresa}", "${req.body.preco}");`,
     (err, rows, fields) => {
       if (err) {
         return res.json({
