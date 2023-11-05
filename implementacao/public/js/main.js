@@ -175,10 +175,10 @@ function visibilidadeDaSenha() {
     }
   }
   
-  document.getElementById('form').addEventListener('submit', function (event) {
-      event.preventDefault(); // Impede o envio do formulário
-      // Faça o que desejar aqui
-    });
+  // document.getElementById('form').addEventListener('submit', function (event) {
+  //     event.preventDefault(); // Impede o envio do formulário
+  //     // Faça o que desejar aqui
+  //   });
   
   function transferirMoedas(alunoId) {
   

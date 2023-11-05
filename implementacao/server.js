@@ -15,7 +15,7 @@ const connection = mysql.createConnection({
   host: "localhost",
   user: "root",
   password: "",
-  database: "mydb",
+  database: "moedaEstudantil",
 });
 
 //INICIALIZATION CONNECTION WITH DATABASE
@@ -353,7 +353,7 @@ app.get("/getProfessor", function (req, res) {
 app.post("/viewAlunosDoProfessor", function (req, res) {
 
   connection.query(
-    `SELECT aluno.idAluno, aluno.nome, aluno.email FROM aluno INNER JOIN professor on aluno.Instituicao_id = professor.Instituicao_id WHERE professor.Instituicao_id =  ${req.body.id};`,
+    `SELECT DISTINCT aluno.idAluno, aluno.nome, aluno.email FROM aluno INNER JOIN professor ON aluno.Instituicao_id = professor.Instituicao_id WHERE professor.Instituicao_id = ${req.body.id};`,
 
     (err, rows, fields) => {
       if (err) {
