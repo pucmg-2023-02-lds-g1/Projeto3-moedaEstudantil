@@ -256,3 +256,37 @@ function listarVantagens(){
         })
     })
 }
+
+function pegarExtratoAluno() {
+    var aluno = sessionStorage.getItem('usuario')
+    var id;
+    if (aluno) {
+        id = JSON.parse(aluno).id
+    }
+    
+
+    fetch(`http://localhost:3000/vantagensDoAluno`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            id
+        })
+    }).then(function (res) {
+        res.json().then(function (data) {
+            if (!data.vantagens) {
+                window.alert(`${data.tipo} - ${data.mensagem}`)
+                window.location.reload();
+            } else {
+                window.alert('deu certo')
+                var campo = document.getElementById('vantagens');
+                for (let i = 0; i < data.vantagens.length; i++) {
+                    campo.innerHTML += `
+                    
+                    `
+                }
+
+            }
+
+        })
+    })
+}
