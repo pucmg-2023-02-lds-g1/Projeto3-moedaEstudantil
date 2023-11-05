@@ -97,11 +97,9 @@ CREATE TABLE IF NOT EXISTS `moedaEstudantil`.`Vantagens` (
   `nome` VARCHAR(45) NOT NULL,
   `descricao` VARCHAR(500) NULL,
   `foto` VARCHAR(45) NULL,
-  `aluno_has_vantagens_idAluno` INT NOT NULL,
-  `aluno_has_vantagens_Aluno_idAluno` VARCHAR(45) NOT NULL,
-  `aluno_has_vantagens_Aluno_Curso_idCurso` INT NOT NULL,
   `Empresa_id` INT NOT NULL,
-  PRIMARY KEY (`idVantagem`, `aluno_has_vantagens_idAluno`, `aluno_has_vantagens_Aluno_idAluno`, `aluno_has_vantagens_Aluno_Curso_idCurso`, `Empresa_id`),
+  `Preco` FLOAT NOT NULL,
+  PRIMARY KEY (`idVantagem`, `Empresa_id`),
   INDEX `fk_Vantagens_Empresa1_idx` (`Empresa_id` ASC) VISIBLE,
   CONSTRAINT `fk_Vantagens_Empresa1`
     FOREIGN KEY (`Empresa_id`)
@@ -109,6 +107,7 @@ CREATE TABLE IF NOT EXISTS `moedaEstudantil`.`Vantagens` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
+
 
 
 -- -----------------------------------------------------
