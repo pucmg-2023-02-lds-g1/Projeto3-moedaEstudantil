@@ -191,7 +191,8 @@ SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 INSERT into instituicao values (NULL, "puc");
-insert into curso values (NULL, "curso1");
+INSERT INTO `moedaestudantil`.`instituicao` (`nome`) VALUES ('santa maria');
+
 -- insert into Professor values (NULL, "josé", "11111111111", "j@gmail.com", "123", "1123", "rua l", NULL, 1);
 -- Insert Professors
 INSERT INTO `moedaEstudantil`.`Professor` (`nome`, `cpf`, `email`, `senha`, `rg`, `endereco`, `moeda`, `Instituicao_id`) VALUES ('Professor1', '111.111.111-11', 'professor1@email.com', 'senha1', '11.111.111-1', 'Endereco 1', 100, 1);
@@ -212,9 +213,30 @@ INSERT INTO `moedaEstudantil`.`Aluno` (`nome`,`senha`,`email`,`cpf`,`rg`,`endere
 INSERT INTO `moedaEstudantil`.`Aluno` (`nome`,`senha`,`email`,`cpf`,`rg`,`endereco`,`moeda`,`Curso_idCurso`,`Instituicao_id`) VALUES ('Aluno9','senha9','aluno9@email.com','999.999.999-99','99.999.999-9','Endereco 9',900,1,1);
 INSERT INTO `moedaEstudantil`.`Aluno` (`nome`,`senha`,`email`,`cpf`,`rg`,`endereco`,`moeda`,`Curso_idCurso`,`Instituicao_id`) VALUES ('Aluno10', 'senha10', 'aluno10@email.com', '1010101010-10', '10.10101010-10', 'Endereco 10', 1000, 1, 1);
 
+INSERT INTO empresa (`nome`, `cnpj`, `email`, `senha`) VALUES ('Sony', '00000000000000', 'sony@gmail.com', '123');
+INSERT INTO empresa (`nome`, `cnpj`, `email`, `senha`) VALUES ('Acttus', '99999999999999', 'acttus@gmail.com', '123');
+
+INSERT INTO `moedaestudantil`.`curso` (`nome`) VALUES ('Eng. Software');
+INSERT INTO `moedaestudantil`.`curso` (`nome`) VALUES ('Jogos Digitais');
 -- Insert Transacoes
 INSERT INTO moedaEstudantil.Transacoes (valor, descricao, Aluno_idAluno, Professor_idProfessor) VALUES (10, "Transacao 1", 1, 1);
 INSERT INTO moedaEstudantil.Transacoes (valor, descricao, Aluno_idAluno, Professor_idProfessor) VALUES (20, "Transacao 2", 2, 2);
 INSERT INTO moedaEstudantil.Transacoes (valor, descricao, Aluno_idAluno, Professor_idProfessor) VALUES (30, "Transacao 3", 3, 3);
 INSERT INTO moedaEstudantil.Transacoes (valor, descricao, Aluno_idAluno, Professor_idProfessor) VALUES (40, "Transacao 4", 4, 4);
 INSERT INTO moedaEstudantil.Transacoes (valor, descricao, Aluno_idAluno, Professor_idProfessor) VALUES (50, "Transacao 5", 5, 5);
+
+INSERT INTO `moedaestudantil`.`vantagens` (`nome`, `descricao`, `foto`, `Empresa_id`, `Preco`) VALUES ('10 créditos', 'Créditos equivalentes a 10 reais para sua carteira digital na loja da Sony', 'https://carrefourbr.vtexassets.com/arquivos/ids/63812139/playstore-10.png?v=637929105618030000empresa', '1', '5');
+INSERT INTO `moedaestudantil`.`vantagens` (`nome`, `descricao`, `foto`, `Empresa_id`, `Preco`) VALUES ('Vale presente 20 reais', '20 reais de desconto em qualquer compra de produtos Acttus', 'https://www.acttuscosmeticos.com.br/wp-content/uploads/2016/11/Matizee-Acttus.png', '2', '10');
+INSERT INTO `moedaestudantil`.`vantagens` (`nome`, `descricao`, `foto`, `Empresa_id`, `Preco`) VALUES ('Amostra gratis', 'Vale amostra de 50ml de produtos capilares', 'https://i1.wp.com/www.acttuscosmeticos.com.br/wp-content/uploads/2016/12/Ampolas-instantaneas-Power-repair-acttus-cosmetico.jpg?fit=1068%2C712&ssl=1', '2', '15');
+INSERT INTO `moedaestudantil`.`vantagens` (`nome`, `descricao`, `foto`, `Empresa_id`, `Preco`) VALUES ('25 créditos', 'Créditos equivalentes a 25 reais para sua carteira digital na loja da Sony', 'https://m.media-amazon.com/images/I/61+ggd56S4L._AC_UF1000,1000_QL80_.jpg', '1', '10');
+INSERT INTO `moedaestudantil`.`vantagens` (`nome`, `descricao`, `foto`, `Empresa_id`, `Preco`) VALUES ('50 créditos', 'Créditos equivalentes a 50 reais para sua carteira digital na loja da Sony', 'https://shop.post.ch/medias/sys_master/images/images/h39/h18/9123258892318/product-755116-mainpicture-Default-WorkingFormat-380Wx380H.jpg', '1', '20');
+
+INSERT INTO `moedaestudantil`.`vantagens_has_aluno` (`Vantagens_idVantagem`, `Aluno_idAluno`) VALUES ('4', '1');
+INSERT INTO `moedaestudantil`.`vantagens_has_aluno` (`Vantagens_idVantagem`, `Aluno_idAluno`) VALUES ('1', '2');
+INSERT INTO `moedaestudantil`.`vantagens_has_aluno` (`Vantagens_idVantagem`, `Aluno_idAluno`) VALUES ('2', '2');
+INSERT INTO `moedaestudantil`.`vantagens_has_aluno` (`Vantagens_idVantagem`, `Aluno_idAluno`) VALUES ('5', '3');
+INSERT INTO `moedaestudantil`.`vantagens_has_aluno` (`Vantagens_idVantagem`, `Aluno_idAluno`) VALUES ('3', '4');
+INSERT INTO `moedaestudantil`.`vantagens_has_aluno` (`Vantagens_idVantagem`, `Aluno_idAluno`) VALUES ('5', '4');
+INSERT INTO `moedaestudantil`.`vantagens_has_aluno` (`Vantagens_idVantagem`, `Aluno_idAluno`) VALUES ('2', '5');
+INSERT INTO `moedaestudantil`.`vantagens_has_aluno` (`Vantagens_idVantagem`, `Aluno_idAluno`) VALUES ('3', '5');
+INSERT INTO `moedaestudantil`.`vantagens_has_aluno` (`Vantagens_idVantagem`, `Aluno_idAluno`) VALUES ('5', '5');

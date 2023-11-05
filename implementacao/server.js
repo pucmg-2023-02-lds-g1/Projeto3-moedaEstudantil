@@ -524,7 +524,7 @@ app.get("/listarVantagens", function(req, res){
           descricao: rows[i].descricao,
           foto: rows[i].foto,
           empresa_id: rows[i].Empresa_id,
-          preco: rows[i].preco
+          preco: rows[i].Preco
         });
       }
     }

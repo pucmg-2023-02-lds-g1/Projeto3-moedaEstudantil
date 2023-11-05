@@ -7,6 +7,10 @@
     border: 1px solid rgb(93, 106, 119); 
 }
 
+.transacao.gasto {
+    background-color: rgba(241, 47, 47, 0.699);
+}
+
 .infos {
     padding: 10px;
 }
