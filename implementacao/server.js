@@ -501,6 +501,35 @@ app.post("/pesquisarExtratoAluno", function (req, res) {
 })
 
 
+app.get("/listarVantagens", function(req, res){
+  var vantagens=[];
+  connection.query(`SELECT * FROM vantagens;`,
+  (err, rows, fields) => {
+    if(err) {
+      return res.json({
+        tipo: "Erro ao retornar vantagens",
+        mensagem: err
+      })
+    }
+    if(rows[0] == null) {
+      return res.json({
+        tipo: "Tabela vazia",
+        mensagem: "a tabela de vantangens não possui nenhum valor"
+      })
+    }else{
+      for (let i = 0; i < rows.length; i++) {
+         vantagens.push({
+          idVantangem: rows[i].idVantangem,
+          nome: rows[i].nome,
+          descricao: rows[i].descricao,
+          preco: rows[i].preco
+        });
+      }
+    }
+    res.send(JSON.stringify(vantagens));
+  })
+})
+
 app.post("/cadastrarVantagem", function (req, res) {
   console.log(req.body.nome)
   console.log(req.body.desc)
@@ -519,3 +548,4 @@ app.post("/cadastrarVantagem", function (req, res) {
       })
     })
 })
+
