@@ -204,15 +204,13 @@ function pegarExtratoAluno() {
                 var campo = document.getElementById('transacoes');
                 for (let i = 0; i < data.transacoes.length; i++) {
                     campo.innerHTML += `
-                    <div id="transacoes">
-      <div class="transacao">
-        <div class="infos">
-          <p><strong>Nome Professor:</strong> ${data.transacoes[i].nomeProfessor}</p>
-          <p><strong>Valor:</strong> ${data.transacoes[i].valor}</p>
-          <p><strong>Descrição:</strong> ${data.transacoes[i].descricao}</p>
-        </div>
-      </div>
-    </div>
+                    <div class="transacao">
+                        <div class="infos">
+                            <p><strong>Nome Professor:</strong> ${data.transacoes[i].nomeProfessor}</p>
+                            <p><strong>Valor:</strong> ${data.transacoes[i].valor}</p>
+                            <p><strong>Descrição:</strong> ${data.transacoes[i].descricao}</p>
+                        </div>
+                    </div>
                     `
                 }
 
@@ -257,7 +255,7 @@ function listarVantagens(){
     })
 }
 
-function pegarExtratoAluno() {
+function pegarVantagensAluno() {
     var aluno = sessionStorage.getItem('usuario')
     var id;
     if (aluno) {
@@ -277,11 +275,16 @@ function pegarExtratoAluno() {
                 window.alert(`${data.tipo} - ${data.mensagem}`)
                 window.location.reload();
             } else {
-                window.alert('deu certo')
-                var campo = document.getElementById('vantagens');
+                var campo = document.getElementById('compras');
                 for (let i = 0; i < data.vantagens.length; i++) {
                     campo.innerHTML += `
-                    
+                    <div class="transacao gasto">
+                        <div class="infos">
+                            <p><strong>Nome Vantagem:</strong> ${data.vantagens[i].vantagemInfo.nome}</p>
+                            <p><strong>Valor:</strong> ${data.vantagens[i].vantagemInfo.Preco}</p>
+                            <p><strong>Descrição:</strong> ${data.vantagens[i].vantagemInfo.descricao}</p>
+                        </div>
+                    </div>
                     `
                 }
 

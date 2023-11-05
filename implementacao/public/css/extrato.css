@@ -1,5 +1,6 @@
 .transacao {
     width: 400px;
+    min-width: 400px;
     height: 170px;
     padding: 15px;
     margin: 10px;
@@ -8,7 +9,7 @@
 }
 
 .transacao.gasto {
-    background-color: rgba(241, 47, 47, 0.699);
+    background-color: rgb(255, 247, 138);
 }
 
 .infos {
@@ -90,6 +91,7 @@ button{
         width: 90vw;
         max-width: 100%;
         overflow-x: auto;
+        overflow-y: hidden;
         flex-basis: 100%;
     }
 
