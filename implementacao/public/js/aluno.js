@@ -228,21 +228,24 @@ function listarVantagens(){
         headers: { 'Content-Type': 'application/json' },
     }).then(function (res) {
         res.json().then(function (data) {
-            if (!data.vantagens) {
+            if (data.tipo) {
                 window.alert(`${data.tipo} - ${data.mensagem}`)
                 window.location.reload();
             } else {
                 var campo = document.getElementById('vantagens');
-                for (let i = 0; i < data.transacoes.length; i++) {
+                for (let i = 0; i < data.length; i++) {
                     campo.innerHTML += `
-                    <div id="vantagens[${data.vantagens[i].idVantagem}] ">
-                        <div class="vantagem">
-                            <div class="infos">
-                            <p><strong>Nome:</strong> ${data.vantagens[i].nome}</p>
-                            <p><strong>Preço:</strong> ${data.vantagens[i].preco}</p>
-                            <p><strong>Descrição:</strong> ${data.vantagens[i].valor}</p>
-                            <button >Comprar</button>
-                            </div>
+                    <div id="vantagens[${data[i].idVantagem}]" class="vantagem"  style="height: auto;">
+                        <div class="infos pb-1 row m-0">
+                          <div class="col-4 p-0 align-items-center">
+                            <img src="${data[i].foto}" alt="imagem da vantagem">
+                          </div>
+                          <div class="col-8">
+                            <p><strong>Nome:</strong> ${data[i].nome}</p>
+                            <p><strong>Preço:</strong> ${data[i].preco}</p>
+                            <p><strong>Descrição:</strong> ${data[i].descricao}</p>
+                            <button type="button" class="btn btn-primary mt-2" onclick="comprarVantagem(${data[i].idVantagem})">Comprar</button>
+                          </div>
                         </div>
                     </div>
                     `

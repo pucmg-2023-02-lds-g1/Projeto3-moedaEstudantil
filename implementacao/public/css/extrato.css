@@ -28,17 +28,17 @@ form {
 #vantagens{
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-around;
     width: 100%;
     height: 100%;
     flex-wrap: wrap;
 }
 
 .vantagem{
-    width: 320px;
-    height: 150px;
+    width: 48vw;
+    height: auto;
     padding: 15px;
-    margin: 10px;
+    margin: 10px 0px;
     background-color: rgb(168, 194, 218);
     border: 1px solid rgb(93, 106, 119); 
     
@@ -48,4 +48,25 @@ button{
     border: none;
     border-radius: 5px;
     margin-top: 10px;
+}
+
+.vantagem>.infos>div>img {
+    width: 100%;
+    max-height: 150px;
+    object-fit: contain;
+}
+
+.vantagem>.infos>div:first-of-type {
+    display: flex;
+    justify-content: center;
+}
+
+@media (max-width: 815px) {
+    .vantagem {
+        width: 90vw;
+    }
+
+    #titulo, #infoAluno {
+        text-align: center;
+    }
 }

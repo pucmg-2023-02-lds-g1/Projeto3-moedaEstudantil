@@ -15,7 +15,7 @@ const connection = mysql.createConnection({
   host: "localhost",
   user: "root",
   password: "",
-  database: "mydb",
+  database: "moedaestudantil",
 });
 
 //INICIALIZATION CONNECTION WITH DATABASE
@@ -519,9 +519,11 @@ app.get("/listarVantagens", function(req, res){
     }else{
       for (let i = 0; i < rows.length; i++) {
          vantagens.push({
-          idVantangem: rows[i].idVantangem,
+          idVantagem: rows[i].idVantagem,
           nome: rows[i].nome,
           descricao: rows[i].descricao,
+          foto: rows[i].foto,
+          empresa_id: rows[i].Empresa_id,
           preco: rows[i].preco
         });
       }

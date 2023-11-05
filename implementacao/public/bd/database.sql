@@ -96,7 +96,7 @@ CREATE TABLE IF NOT EXISTS `moedaEstudantil`.`Vantagens` (
   `idVantagem` INT NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(45) NOT NULL,
   `descricao` VARCHAR(500) NULL,
-  `foto` VARCHAR(45) NULL,
+  `foto` TEXT NULL,
   `Empresa_id` INT NOT NULL,
   `Preco` FLOAT NOT NULL,
   PRIMARY KEY (`idVantagem`, `Empresa_id`),

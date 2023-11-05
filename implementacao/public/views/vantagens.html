@@ -20,6 +20,8 @@
   <link rel="stylesheet" href="../css/global.css">
   <!-- Script -->
 
+  <!-- Icones fodas -->
+  <script src="https://kit.fontawesome.com/8f3c455873.js" crossorigin="anonymous"></script>
   <!-- Bootstrap v4.0 -->
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
     integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"
@@ -39,50 +41,37 @@
   <title>Vantagens</title>
 </head>
 
-<body onload="estaLogado(1),mostraExtrato()">
-  <header>
-    
+<body onload="estaLogado(1),mostraExtrato(),listarVantagens()">
+  <header style="position: sticky !important;">
     <img class="img_header" src="../assets/pngFodaDeVerdade.png">
     <h1 class="nome_site">Incentive coins</h1>
     <div class="btns_header">
-      <i class="fa-solid fa-arrow-right-to-bracket fa-2xl" style="color: #000000;"></i>
-      <h1 class="caixa_login"><a class="opc_login" href="login.html">Login</a></h1>
-      <i class="fa-solid fa-user fa-2xl" style="color: #000000;"></i>
-      <h1 class="caixa_perfil" onclick="levarPerfil()"><a class="opc_perfil" href="#">Perfil</a></h1>
+        <i class="fa-solid fa-arrow-right-to-bracket fa-2xl" style="color: #000000;"></i>
+        <h1 class="caixa_login"><a class="opc_login" href="login.html">Login</a></h1>
+        <i class="fa-solid fa-user fa-2xl" style="color: #000000;"></i>
+        <h1 class="caixa_perfil" onclick="levarPerfil()"><a class="opc_perfil" href="#">Perfil</a></h1>
     </div>
   </header>
+
   <div id="container">
-    <div class="nome_pag_inicio">
-      <div class="p-2">
+    <div class="nome_pag_inicio row m-0">
+      <div class="pl-4 pt-3 col-12">
         <a href="index.html">
           <a class="inicio" href="index.html">
-            <h1><i class="bi bi-arrow-left-circle mr-1"></i>Início,listarVantagens()</h1>
+            <h1><i class="bi bi-arrow-left-circle mr-1"></i>Início</h1>
           </a>
         </a>
       </div>
 
-      <div id="infoAluno">
+      <div class="col-md-4 p-4" id="infoAluno">
 
+      </div>
+      <div id="titulo" class="col-md-8 pt-3 pb-3">
+        <h1 class="titulo_pag">Vantagens cadastradas <i class="bi bi-piggy-bank"></i></h1>
       </div>
     </div>
 
     <div id="vantagens">
-        <div class="vantagem">
-            <div class="infos">
-            <p><strong>Nome:</strong> ${data.vantagens[i].nome}</p>
-            <p><strong>Preço:</strong> ${data.vantagens[i].preco}</p>
-            <p><strong>Descrição:</strong> ${data.vantagens[i].valor}</p>
-            <button >Comprar</button>
-            </div>
-        </div>
-        <div class="vantagem">
-            <div class="infos">
-            <p><strong>Nome:</strong> ${data.vantagens[i].nome}</p>
-            <p><strong>Preço:</strong> ${data.vantagens[i].preco}</p>
-            <p><strong>Descrição:</strong> ${data.vantagens[i].valor}</p>
-            <button >Comprar</button>
-            </div>
-        </div>
         
     </div>
 
