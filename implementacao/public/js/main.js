@@ -138,6 +138,7 @@ function visibilidadeDaSenha() {
                 <p class="card-text">Email: ${aluno.email}</p>
                 <p class="card-text">Moedas:<b> ${moedas} </b></p>
                 <p class="card-text">Transferir moedas: <input name="idAlunoValor_${aluno.idAluno}" class="input_val" type="number" step="1"></p>
+                <p class="card-text">Descrição: <input name="idAlunoValor_${aluno.idAluno}" class="input_desc" step="1"></p>
                 <div class="btn_box">
                   <button onclick="transferirMoedas(${aluno.idAluno})" href="#" class="btn btn-primary">Transferir</button>
                 </div>
@@ -174,19 +175,24 @@ function visibilidadeDaSenha() {
     }
   }
   
-  // document.getElementById('form').addEventListener('submit', function (event) {
-  //     event.preventDefault(); // Impede o envio do formulário
-  //     // Faça o que desejar aqui
-  //   });
+  document.getElementById('form').addEventListener('submit', function (event) {
+      event.preventDefault(); // Impede o envio do formulário
+      // Faça o que desejar aqui
+    });
   
   function transferirMoedas(alunoId) {
   
       // console.log(document.getElementById("idAlunoValor_"+alunoId))
       console.log(alunoId)
-  
+
       const inputs = document.getElementsByName("idAlunoValor_"+alunoId);
       const meuInput = inputs[0];
-      const quantidadeS = meuInput.value;  
+      const quantidadeS = meuInput.value;
+
+      const meuInput2 = inputs[1];
+      const descricao = meuInput2.value; 
+      console.log(descricao)
+
       var quantidade = Number(quantidadeS);
 
 
@@ -202,7 +208,7 @@ function visibilidadeDaSenha() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ professorId, alunoId, quantidade }),
+        body: JSON.stringify({ professorId, alunoId, quantidade, descricao }),
       })
         .then(response => response.text())
         .then(data => alert(data))
@@ -214,7 +220,7 @@ function visibilidadeDaSenha() {
         console.log("professor"+professorId)
         console.log("quantidade"+quantidade)
 
-        console.log("morte")
+        // console.log("morte")
 
     }
 

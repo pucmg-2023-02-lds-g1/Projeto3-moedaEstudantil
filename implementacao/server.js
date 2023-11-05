@@ -15,7 +15,7 @@ const connection = mysql.createConnection({
   host: "localhost",
   user: "root",
   password: "",
-  database: "moedaestudantil",
+  database: "mydb",
 });
 
 //INICIALIZATION CONNECTION WITH DATABASE
@@ -399,7 +399,7 @@ app.post("/viewMoedasAluno", function (req, res) {
 
 app.post('/transferirMoedas', (req, res) => {
   console.log("cheguei aki")
-  const { professorId, alunoId, quantidade } = req.body;
+  const { professorId, alunoId, quantidade, descricao } = req.body;
 
   // Verificar se o professor tem moedas suficientes
   const sqlVerificar = `SELECT moeda FROM Professor WHERE idProfessor = ?;`;
@@ -421,8 +421,8 @@ app.post('/transferirMoedas', (req, res) => {
         if (err) throw err;
 
         // Registrar a transação
-        const sqlTransacao = `INSERT INTO transacoes (Professor_idProfessor, Aluno_idAluno, valor) VALUES (?, ?, ?);`;
-        connection.query(sqlTransacao, [professorId, alunoId, quantidade], (err, results) => {
+        const sqlTransacao = `INSERT INTO transacoes (Professor_idProfessor, Aluno_idAluno, valor, descricao) VALUES (?, ?, ?, ?);`;
+        connection.query(sqlTransacao, [professorId, alunoId, quantidade, descricao], (err, results) => {
           if (err) throw err;
 
           res.send('Transferência de moedas realizada com sucesso!');
