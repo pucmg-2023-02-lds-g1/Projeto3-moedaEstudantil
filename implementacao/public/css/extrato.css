@@ -24,3 +24,28 @@ form {
 #infoAluno {
     padding: 40px;
 }
+
+#vantagens{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    flex-wrap: wrap;
+}
+
+.vantagem{
+    width: 320px;
+    height: 150px;
+    padding: 15px;
+    margin: 10px;
+    background-color: rgb(168, 194, 218);
+    border: 1px solid rgb(93, 106, 119); 
+    
+}
+
+button{
+    border: none;
+    border-radius: 5px;
+    margin-top: 10px;
+}

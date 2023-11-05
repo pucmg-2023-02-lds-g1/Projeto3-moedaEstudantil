@@ -221,3 +221,35 @@ function pegarExtratoAluno() {
         })
     })
 }
+
+function listarVantagens(){
+    fetch(`http://localhost:3000/listarVantagens`, {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' },
+    }).then(function (res) {
+        res.json().then(function (data) {
+            if (!data.vantagens) {
+                window.alert(`${data.tipo} - ${data.mensagem}`)
+                window.location.reload();
+            } else {
+                var campo = document.getElementById('vantagens');
+                for (let i = 0; i < data.transacoes.length; i++) {
+                    campo.innerHTML += `
+                    <div id="vantagens[${data.vantagens[i].idVantagem}] ">
+                        <div class="vantagem">
+                            <div class="infos">
+                            <p><strong>Nome:</strong> ${data.vantagens[i].nome}</p>
+                            <p><strong>Preço:</strong> ${data.vantagens[i].preco}</p>
+                            <p><strong>Descrição:</strong> ${data.vantagens[i].valor}</p>
+                            <button >Comprar</button>
+                            </div>
+                        </div>
+                    </div>
+                    `
+                }
+
+            }
+
+        })
+    })
+}
