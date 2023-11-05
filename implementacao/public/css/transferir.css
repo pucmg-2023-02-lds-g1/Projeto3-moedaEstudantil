@@ -25,7 +25,13 @@ form {
     border-width: 0px;
     margin-left: 5px;
     border: 1px solid rgb(93, 106, 119);
-
+}
+.input_desc {
+    width: 160px;
+    border-radius: 10px;
+    border-width: 0px;
+    margin-left: 5px;
+    border: 1px solid rgb(93, 106, 119);
 }
 .card-text {
     margin-bottom: 5px;
