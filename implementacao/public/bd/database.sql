@@ -10,7 +10,6 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- -----------------------------------------------------
 -- Schema moedaEstudantil
 -- -----------------------------------------------------
-
 -- -----------------------------------------------------
 -- Schema moedaEstudantil
 -- -----------------------------------------------------
@@ -201,6 +200,11 @@ INSERT INTO `moedaEstudantil`.`Professor` (`nome`, `cpf`, `email`, `senha`, `rg`
 INSERT INTO `moedaEstudantil`.`Professor` (`nome`, `cpf`, `email`, `senha`, `rg`, `endereco`, `moeda`, `Instituicao_id`) VALUES ('Professor4', '444.444.444-44', 'professor4@email.com', 'senha4', '44.444.444-4', 'Endereco 4', 400, 1);
 INSERT INTO `moedaEstudantil`.`Professor` (`nome`, `cpf`, `email`, `senha`, `rg`, `endereco`, `moeda`, `Instituicao_id`) VALUES ('Professor5', '555.555.555-55', 'professor5@email.com', 'senha5', '55.555.555-5', 'Endereco 5', 500, 1);
 
+INSERT INTO empresa (`nome`, `cnpj`, `email`, `senha`) VALUES ('Sony', '00000000000000', 'sony@gmail.com', '123');
+INSERT INTO empresa (`nome`, `cnpj`, `email`, `senha`) VALUES ('Acttus', '99999999999999', 'acttus@gmail.com', '123');
+
+INSERT INTO `moedaestudantil`.`curso` (`nome`) VALUES ('Eng. Software');
+INSERT INTO `moedaestudantil`.`curso` (`nome`) VALUES ('Jogos Digitais');
 -- Insert Alunos
 INSERT INTO `moedaEstudantil`.`Aluno` (`nome`,`senha`,`email`,`cpf`,`rg`,`endereco`,`moeda`,`Curso_idCurso`,`Instituicao_id`) VALUES ('Aluno1','senha1','aluno1@email.com','111.111.111-11','11.111.111-1','Endereco 1',100,1,1);
 INSERT INTO `moedaEstudantil`.`Aluno` (`nome`,`senha`,`email`,`cpf`,`rg`,`endereco`,`moeda`,`Curso_idCurso`,`Instituicao_id`) VALUES ('Aluno2','senha2','aluno2@email.com','222.222.222-22','22.222.222-2','Endereco 2',200,1,1);
@@ -213,11 +217,7 @@ INSERT INTO `moedaEstudantil`.`Aluno` (`nome`,`senha`,`email`,`cpf`,`rg`,`endere
 INSERT INTO `moedaEstudantil`.`Aluno` (`nome`,`senha`,`email`,`cpf`,`rg`,`endereco`,`moeda`,`Curso_idCurso`,`Instituicao_id`) VALUES ('Aluno9','senha9','aluno9@email.com','999.999.999-99','99.999.999-9','Endereco 9',900,1,1);
 INSERT INTO `moedaEstudantil`.`Aluno` (`nome`,`senha`,`email`,`cpf`,`rg`,`endereco`,`moeda`,`Curso_idCurso`,`Instituicao_id`) VALUES ('Aluno10', 'senha10', 'aluno10@email.com', '1010101010-10', '10.10101010-10', 'Endereco 10', 1000, 1, 1);
 
-INSERT INTO empresa (`nome`, `cnpj`, `email`, `senha`) VALUES ('Sony', '00000000000000', 'sony@gmail.com', '123');
-INSERT INTO empresa (`nome`, `cnpj`, `email`, `senha`) VALUES ('Acttus', '99999999999999', 'acttus@gmail.com', '123');
 
-INSERT INTO `moedaestudantil`.`curso` (`nome`) VALUES ('Eng. Software');
-INSERT INTO `moedaestudantil`.`curso` (`nome`) VALUES ('Jogos Digitais');
 -- Insert Transacoes
 INSERT INTO moedaEstudantil.Transacoes (valor, descricao, Aluno_idAluno, Professor_idProfessor) VALUES (10, "Transacao 1", 1, 1);
 INSERT INTO moedaEstudantil.Transacoes (valor, descricao, Aluno_idAluno, Professor_idProfessor) VALUES (20, "Transacao 2", 2, 2);

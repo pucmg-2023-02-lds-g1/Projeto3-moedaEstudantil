@@ -14,7 +14,7 @@ app.use(express.static("public"))
 const connection = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: "",
+  password: "coxinha",
   database: "moedaestudantil",
 });
 
@@ -536,7 +536,7 @@ app.post("/cadastrarVantagem", function (req, res) {
   console.log(req.body.nome)
   console.log(req.body.desc)
   console.log(req.body.preco)
-  connection.query(`INSERT INTO vantagens (idVantagem, nome, descricao, foto, Empresa_id, Preco) values (default, "${req.body.nome}", "${req.body.desc}", NULL, "${req.body.idEmpresa}", "${req.body.preco}");`,
+  connection.query(`INSERT INTO vantagens (idVantagem, nome, descricao, foto, Empresa_id, Preco) values (default, "${req.body.nome}", "${req.body.desc}", "${req.body.url}", "${req.body.idEmpresa}", "${req.body.preco}");`,
     (err, rows, fields) => {
       if (err) {
         return res.json({
@@ -550,4 +550,54 @@ app.post("/cadastrarVantagem", function (req, res) {
       })
     })
 })
+
+app.post("/vantagensDoAluno", function (req, res) {
+  connection.query(`SELECT * FROM vantagens_has_Aluno WHERE Aluno_idAluno = ?;`, [req.body.id], (err, vantagemAlunoRows, fields) => {
+    if (err) {
+      return res.json({
+        tipo: "Erro ao retornar vantagens do aluno",
+        mensagem: err
+      });
+    }
+
+    const vantagensAluno = vantagemAlunoRows;
+
+    if (vantagensAluno.length === 0) {
+      return res.json({
+        vantagens: []
+      });
+    }
+
+    const vantagemIDs = vantagensAluno.map(vantagem => vantagem.Vantagens_idVantagem);
+    const vantagemIDsString = vantagemIDs.join(',');
+
+    connection.query(`SELECT * FROM Vantagens WHERE idVantagem IN (${vantagemIDsString});`, (err, vantagemRows, fields) => {
+      if (err) {
+        return res.json({
+          tipo: "Erro ao retornar informações das vantagens",
+          mensagem: err
+        });
+      }
+
+      const vantagemMap = {};
+      vantagemRows.forEach(vantagem => {
+        vantagemMap[vantagem.idVantagem] = vantagem;
+      });
+
+      const vantagensComInfo = vantagensAluno.map(vantagemAluno => {
+        const vantagem = vantagemMap[vantagemAluno.Vantagens_idVantagem];
+        return {
+          ...vantagemAluno,
+          vantagemInfo: vantagem
+        };
+      });
+
+      return res.json({
+        vantagens: vantagensComInfo
+      });
+    });
+  });
+});
+
+
 
