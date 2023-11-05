@@ -74,3 +74,30 @@ button{
         text-align: center;
     }
 }
+
+#recebimentosMobile, #comprasMobile {
+    display: none;
+}
+
+#recebimentosPC, #comprasPC {
+    display: block;
+}
+
+@media (max-width: 890px) {
+    #compras, #transacoes {
+        display: flex;
+        flex-direction: row;
+        width: 90vw;
+        max-width: 100%;
+        overflow-x: auto;
+        flex-basis: 100%;
+    }
+
+    #recebimentosMobile, #comprasMobile {
+        display: block;
+    }
+    
+    #recebimentosPC, #comprasPC {
+        display: none;
+    }
+}
