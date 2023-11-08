@@ -187,7 +187,7 @@ function pegarExtratoAluno() {
     if (aluno) {
         id = JSON.parse(aluno).id
     }
-    
+
 
     fetch(`http://localhost:3000/pesquisarExtratoAluno`, {
         method: 'POST',
@@ -220,7 +220,7 @@ function pegarExtratoAluno() {
     })
 }
 
-function listarVantagens(){
+function listarVantagens() {
     fetch(`http://localhost:3000/listarVantagens`, {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' },
@@ -261,7 +261,7 @@ function pegarVantagensAluno() {
     if (aluno) {
         id = JSON.parse(aluno).id
     }
-    
+
 
     fetch(`http://localhost:3000/vantagensDoAluno`, {
         method: 'POST',
@@ -292,4 +292,64 @@ function pegarVantagensAluno() {
 
         })
     })
+}
+
+function pegarMoedas() {
+
+    var aluno = sessionStorage.getItem('usuario')
+    var idAluno;
+    if (aluno) {
+        idAluno = JSON.parse(aluno).id
+    }
+    fetch(`http://localhost:3000/viewAluno`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            id: idAluno
+        })
+    }).then(function (data) {
+        return data.moeda
+    })
+}
+
+function pegarPreco(idVantagem) {
+
+    fetch(`http://localhost:3000/viewAluno`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            idVantagem
+        })
+    }).then(function (data) {
+        return data.preco
+    })
+}
+
+function comprarVantagem(idVantagem) {
+
+    var aluno = sessionStorage.getItem('usuario')
+    var idAluno;
+    if (aluno) {
+        idAluno = JSON.parse(aluno).id
+    }
+    var moedas = pegarMoedas()
+    var preco = pegarPreco(idVantagem)
+
+    if (moedas < preco) {
+        window.alert("Saldo insuficiente")
+    } else {
+        fetch(`http://localhost:3000/comprarVantagem`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                idAluno, idVantagem
+            })
+        }).then(function (res) {
+            res.json().then(function (data) {
+                window.alert(`${data.tipo} - ${data.mensagem}`)
+                window.location.reload();
+            })
+        })
+    }
+
 }

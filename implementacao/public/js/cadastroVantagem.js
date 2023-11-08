@@ -1,5 +1,5 @@
 
-function cadastrarVantagem(){
+function cadastrarVantagem() {
 
     let idEmpresa = sessionStorage.getItem("usuario")
     if (idEmpresa) {
@@ -21,7 +21,11 @@ function cadastrarVantagem(){
         })
     }).then(function (res) {
         res.json().then(function (data) {
-            window.alert(`${data.tipo} - ${data.mensagem}`)
+            if (!data) {
+                window.alert(`${data.tipo} - ${data.mensagem}`)
+            }else{
+                window.alert("Vantagem cadastrada")
+            }
         })
     })
 }

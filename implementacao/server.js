@@ -501,41 +501,38 @@ app.post("/pesquisarExtratoAluno", function (req, res) {
 })
 
 
-app.get("/listarVantagens", function(req, res){
-  var vantagens=[];
+app.get("/listarVantagens", function (req, res) {
+  var vantagens = [];
   connection.query(`SELECT * FROM vantagens;`,
-  (err, rows, fields) => {
-    if(err) {
-      return res.json({
-        tipo: "Erro ao retornar vantagens",
-        mensagem: err
-      })
-    }
-    if(rows[0] == null) {
-      return res.json({
-        tipo: "Tabela vazia",
-        mensagem: "a tabela de vantangens não possui nenhum valor"
-      })
-    }else{
-      for (let i = 0; i < rows.length; i++) {
-         vantagens.push({
-          idVantagem: rows[i].idVantagem,
-          nome: rows[i].nome,
-          descricao: rows[i].descricao,
-          foto: rows[i].foto,
-          empresa_id: rows[i].Empresa_id,
-          preco: rows[i].Preco
-        });
+    (err, rows, fields) => {
+      if (err) {
+        return res.json({
+          tipo: "Erro ao retornar vantagens",
+          mensagem: err
+        })
       }
-    }
-    res.send(JSON.stringify(vantagens));
-  })
+      if (rows[0] == null) {
+        return res.json({
+          tipo: "Tabela vazia",
+          mensagem: "a tabela de vantangens não possui nenhum valor"
+        })
+      } else {
+        for (let i = 0; i < rows.length; i++) {
+          vantagens.push({
+            idVantagem: rows[i].idVantagem,
+            nome: rows[i].nome,
+            descricao: rows[i].descricao,
+            foto: rows[i].foto,
+            empresa_id: rows[i].Empresa_id,
+            preco: rows[i].Preco
+          });
+        }
+      }
+      res.send(JSON.stringify(vantagens));
+    })
 })
 
 app.post("/cadastrarVantagem", function (req, res) {
-  console.log(req.body.nome)
-  console.log(req.body.desc)
-  console.log(req.body.preco)
   connection.query(`INSERT INTO vantagens (idVantagem, nome, descricao, foto, Empresa_id, Preco) values (default, "${req.body.nome}", "${req.body.desc}", "${req.body.url}", "${req.body.idEmpresa}", "${req.body.preco}");`,
     (err, rows, fields) => {
       if (err) {
@@ -599,5 +596,34 @@ app.post("/vantagensDoAluno", function (req, res) {
   });
 });
 
+app.post("/comprarVantagem", function (req, res) {
+  connection.query(`INSERT INTO vantagens (idVantagem, nome, descricao, foto, Empresa_id, Preco) values (default, "${req.body.nome}", "${req.body.desc}", "${req.body.url}", "${req.body.idEmpresa}", "${req.body.preco}");`,
+    (err, rows, fields) => {
+      if (err) {
+        return res.json({
+          tipo: "Erro ao cadastrar a vantagem",
+          mensagem: err
+        })
+      }
 
+      return res.json({
+        transacoes: rows
+      })
+    })
+})
 
+app.post("/pegarPreco", function (req, res) {
+  connection.query(`SELECT Preco FROM vantagens where idVantagem = ${req.body.idVantagem};`,
+    (err, rows, fields) => {
+      if (err) {
+        return res.json({
+          tipo: "Erro ao retornar preço",
+          mensagem: err
+        })
+      } else {
+        res.json({
+          preco: rows[0].Preco,
+        })
+      }
+    })
+})
