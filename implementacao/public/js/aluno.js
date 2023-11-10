@@ -334,15 +334,16 @@ function comprarVantagem(idVantagem) {
     }
     var moedas = pegarMoedas()
     var preco = pegarPreco(idVantagem)
-
+    
     if (moedas < preco) {
         window.alert("Saldo insuficiente")
     } else {
+        var valorF = moedas - preco
         fetch(`http://localhost:3000/comprarVantagem`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                idAluno, idVantagem
+                idAluno, idVantagem, valorF
             })
         }).then(function (res) {
             res.json().then(function (data) {

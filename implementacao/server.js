@@ -597,20 +597,31 @@ app.post("/vantagensDoAluno", function (req, res) {
 });
 
 app.post("/comprarVantagem", function (req, res) {
-  connection.query(`INSERT INTO vantagens (idVantagem, nome, descricao, foto, Empresa_id, Preco) values (default, "${req.body.nome}", "${req.body.desc}", "${req.body.url}", "${req.body.idEmpresa}", "${req.body.preco}");`,
+  connection.query(`INSERT INTO Vantagens_has_Aluno (Vantagens_idVantagem, Aluno_idAluno) values (${req.body.idVantagem}, ${req.body.idAluno});`,
     (err, rows, fields) => {
       if (err) {
         return res.json({
-          tipo: "Erro ao cadastrar a vantagem",
+          tipo: "Você já comprou essa vantagem",
           mensagem: err
         })
       }
 
-      return res.json({
-        transacoes: rows
+      connection.query(`update aluno set moeda = ${req.body.valorF} where idAluno = ${req.body.idAluno};`, (err, rows, fields) => {
+        if (err) {
+          return res.json({
+            tipo: "Erro ao comprar a vantagem",
+            mensagem: err
+          })
+        }
+
+        return res.json({
+          transacoes: rows
+        })
       })
     })
-})
+
+});
+
 
 app.post("/pegarPreco", function (req, res) {
   connection.query(`SELECT Preco FROM vantagens where idVantagem = ${req.body.idVantagem};`,
