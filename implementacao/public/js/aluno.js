@@ -294,52 +294,57 @@ function pegarVantagensAluno() {
     })
 }
 
-function pegarMoedas() {
-
+async function pegarMoedas() {
     var aluno = sessionStorage.getItem('usuario')
     var idAluno;
     if (aluno) {
         idAluno = JSON.parse(aluno).id
     }
-    fetch(`http://localhost:3000/viewAluno`, {
+    let moedas = await fetch(`http://localhost:3000/pegarMoedas`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
             id: idAluno
         })
-    }).then(function (data) {
-        return data.moeda
-    })
+    }).then(response => response.json())
+        .then(data => {
+            return data.moeda
+        })
+    return moedas;
 }
 
-function pegarPreco(idVantagem) {
-
-    fetch(`http://localhost:3000/viewAluno`, {
+async function pegarPreco(idVantagem) {
+    let preco = await fetch(`http://localhost:3000/pegarPreco`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
             idVantagem
         })
-    }).then(function (data) {
-        return data.preco
-    })
+    }).then(response => response.json())
+        .then(data => {
+            return data.preco
+        })
+    return preco;
 }
 
-function comprarVantagem(idVantagem) {
 
+
+async function comprarVantagem(idVantagem) {
+
+    console.log("asdiasdioasdas")
     var aluno = sessionStorage.getItem('usuario')
     var idAluno;
     if (aluno) {
         idAluno = JSON.parse(aluno).id
     }
-    var moedas = pegarMoedas()
-    var preco = pegarPreco(idVantagem)
-    
+    var moedas = await pegarMoedas()
+    var preco = await pegarPreco(idVantagem)
     if (moedas < preco) {
         window.alert("Saldo insuficiente")
     } else {
         var valorF = moedas - preco
-        fetch(`http://localhost:3000/comprarVantagem`, {
+
+        await fetch(`http://localhost:3000/comprarVantagem`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -347,7 +352,7 @@ function comprarVantagem(idVantagem) {
             })
         }).then(function (res) {
             res.json().then(function (data) {
-                window.alert(`${data.tipo} - ${data.mensagem}`)
+                window.alert(`${data.tipo}`)
                 window.location.reload();
             })
         })
