@@ -14,6 +14,32 @@ Os artefatos do projeto estão separados da seguinte forma:
    
    ![UML - Diagrama de classes](Imagens/Diagrama%20de%20Classe.png)
 
+* `/Diagrama de banco de dados`
+	* **moedaEstudantil.mwb**: Projeto feito no MySQL Workbench do diagrama lógico de entidade e relacionamento.
+   
+   ![UML - Diagrama lógico](Imagens/moedaEstudantil.png)
+
+* `/Diagramas de sequencia`
+	* **Realizar tranferencia.asta**: Diagrama de realização de transferência.
+   
+   ![UML - Diagrama de sequencia: Realizar transferencia](Imagens/Realizar%20tranferencia.png)
+  
+	* **moedaEstudantil_DSS_CriarVantagem.asta**: Diagrama de criação de vantagem.
+   
+   ![UML - Diagrama de sequencia: Criar vantagem](Imagens/Sequence%20Diagram%20criar%20vantagem.png)
+  
+	* **moedaEstudantil_DSS_Extrato.asta**: Diagrama de visualização de extrato.
+   
+   ![UML - Diagrama de sequencia: Visualizar extrato](Imagens/Diagrama%20de%20Sequencia%20-%20VisualizarExtrato.png)
+  
+	* **moedaEstudantil_DSS_ViewVantagem.asta**: Diagrama de visualização de vantagem.
+   
+   ![UML - Diagrama de sequencia: Visualizar vantagem](Imagens/Sequence%20Diagram%20view%20vantagem.png)
+  
+	* **SequenceDiagramComprarVantagem.drawio**: Diagrama de compra de vantagem.
+   
+   ![UML - Diagrama de sequencia: Comprar vantagem](Imagens/SequenceDiagramComprarVantagem.jpeg)
+
 * `/Historia de usuário`
 	* **backlog.md**: Descrição das histórias de usuário de acordo com os casos de uso.
  
@@ -29,3 +55,6 @@ Como um aluno, eu quero| trocar moedas | para receber uma vantagen escolhida no 
 
 * `/Imagens`
 	* Arquivo contendo todas as imagens utilizadas.
+
+* `/Videos`
+	* Arquivo contendo todos os vídeos realizados.
