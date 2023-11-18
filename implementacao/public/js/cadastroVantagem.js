@@ -1,6 +1,7 @@
 
 function cadastrarVantagem() {
 
+    
     let idEmpresa = sessionStorage.getItem("usuario")
     if (idEmpresa) {
         idEmpresa = JSON.parse(idEmpresa).id
@@ -11,7 +12,6 @@ function cadastrarVantagem() {
     let preco = document.getElementById("preco").value
     let url = document.getElementById("url").value
     preco = parseFloat(preco)
-
 
     fetch(`http://localhost:3000/cadastrarVantagem`, {
         method: 'POST',
@@ -25,7 +25,10 @@ function cadastrarVantagem() {
                 window.alert(`${data.tipo} - ${data.mensagem}`)
             }else{
                 window.alert("Vantagem cadastrada")
+                envioemail.envioEmail(desc, nome,preco)
             }
         })
     })
+
+    
 }

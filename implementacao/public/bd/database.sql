@@ -216,6 +216,7 @@ INSERT INTO `moedaEstudantil`.`Aluno` (`nome`,`senha`,`email`,`cpf`,`rg`,`endere
 INSERT INTO `moedaEstudantil`.`Aluno` (`nome`,`senha`,`email`,`cpf`,`rg`,`endereco`,`moeda`,`Curso_idCurso`,`Instituicao_id`) VALUES ('Aluno8','senha8','aluno8@email.com','888.888.888-88','88.888.888-8','Endereco 8',800,1,1);
 INSERT INTO `moedaEstudantil`.`Aluno` (`nome`,`senha`,`email`,`cpf`,`rg`,`endereco`,`moeda`,`Curso_idCurso`,`Instituicao_id`) VALUES ('Aluno9','senha9','aluno9@email.com','999.999.999-99','99.999.999-9','Endereco 9',900,1,1);
 INSERT INTO `moedaEstudantil`.`Aluno` (`nome`,`senha`,`email`,`cpf`,`rg`,`endereco`,`moeda`,`Curso_idCurso`,`Instituicao_id`) VALUES ('Aluno10', 'senha10', 'aluno10@email.com', '1010101010-10', '10.10101010-10', 'Endereco 10', 1000, 1, 1);
+INSERT INTO `moedaEstudantil`.`Aluno` (`nome`,`senha`,`email`,`cpf`,`rg`,`endereco`,`moeda`,`Curso_idCurso`,`Instituicao_id`) VALUES ('Drumond O INDOMÁVEL', 'indomavel', 'drumond.canal@gmail.com', '9999999999', '99999999', 'Contagem das Abóboras', 1000, 1, 1);
 
 
 -- Insert Transacoes
