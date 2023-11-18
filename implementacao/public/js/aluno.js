@@ -64,7 +64,6 @@ function viewAluno() {
         })
     })
 
-
 }
 
 function deletarAluno() {
@@ -239,8 +238,8 @@ function listarVantagens() {
                             <img src="${data[i].foto}" alt="imagem da vantagem">
                           </div>
                           <div class="col-8">
-                            <p><strong>Nome:</strong> ${data[i].nome}</p>
-                            <p><strong>Preço:</strong> ${data[i].preco}</p>
+                            <p id="nomeVantagem"><strong>Nome:</strong> ${data[i].nome}</p>
+                            <p id="precoVantagem"><strong>Preço:</strong> ${data[i].preco}</p>
                             <p><strong>Descrição:</strong> ${data[i].descricao}</p>
                             <button type="button" class="btn btn-primary mt-2" onclick="comprarVantagem(${data[i].idVantagem})">Comprar</button>
                           </div>
@@ -253,6 +252,7 @@ function listarVantagens() {
 
         })
     })
+    
 }
 
 function pegarVantagensAluno() {
@@ -329,16 +329,19 @@ async function pegarPreco(idVantagem) {
 
 
 
+
 async function comprarVantagem(idVantagem) {
 
-    console.log("asdiasdioasdas")
+    const numeroAleatorio = Math.floor(Math.random() * 99999) + 1;
     var aluno = sessionStorage.getItem('usuario')
     var idAluno;
     if (aluno) {
         idAluno = JSON.parse(aluno).id
     }
+    var email = await getEmailAluno()
     var moedas = await pegarMoedas()
     var preco = await pegarPreco(idVantagem)
+    var nomeVantagem = document.getElementById("nomeVantagem").textContent
     if (moedas < preco) {
         window.alert("Saldo insuficiente")
     } else {
@@ -353,9 +356,66 @@ async function comprarVantagem(idVantagem) {
         }).then(function (res) {
             res.json().then(function (data) {
                 window.alert(`${data.tipo}`)
+                if (data.tipo == "Vantagem comprada") {
+                    envioEmail(email, "Compra de vantagem efetutuada!", `Parabens pelo resgate da vantagem. ${nomeVantagem}. Preço: ${preco}. Código pare resgate da vantagem: ${numeroAleatorio}`)
+                }
                 window.location.reload();
             })
+
         })
     }
 
+}
+
+
+async function envioEmail(destinatario, assunto, corpo) {
+    try {
+        
+        const resposta = await fetch('http://localhost:3000/enviar-email', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                destinatario,
+                assunto,
+                corpo,
+            }),
+        });
+
+        const dados = await resposta.json();
+        console.log(dados.tipo);
+    } catch (erro) {
+        console.error('Erro ao chamar a API de envio de e-mail', erro);
+    }
+}
+
+async function getEmailAluno() {
+    let id = sessionStorage.getItem("usuario");
+    if (id) {
+        id = JSON.parse(id).id;
+    }
+
+    try {
+        const resposta = await fetch(`http://localhost:3000/viewAluno`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                id
+            })
+        });
+
+        const data = await resposta.json();
+
+        if (!data.aluno) {
+            window.alert(`${data.tipo} - ${data.mensagem}`);
+            return 
+        } else {
+            const email = data.aluno.email;
+            return email;
+        }
+    } catch (erro) {
+        console.error('Erro ao obter o e-mail do aluno', erro);
+        return null; 
+    }
 }

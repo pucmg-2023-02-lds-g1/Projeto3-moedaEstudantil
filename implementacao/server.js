@@ -14,7 +14,7 @@ app.use(express.static("public"))
 const connection = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: "",
+  password: "coxinha",
   database: "moedaEstudantil",
 });
 
@@ -622,6 +622,9 @@ app.post("/vantagensDoAluno", function (req, res) {
   });
 });
 
+
+
+
 app.post("/comprarVantagem", function (req, res) {
   connection.query('INSERT INTO Vantagens_has_Aluno (Vantagens_idVantagem, Aluno_idAluno) values (?, ?)', [req.body.idVantagem, req.body.idAluno], (err, rows, fields) => {
     if (err) {
@@ -682,4 +685,39 @@ app.post("/pegarMoedas", function (req, res) {
       });
     }
   );
+});
+
+
+app.post('/enviar-email', async (req, res) => {
+  const { destinatario, assunto, corpo } = req.body;
+
+  console.log(assunto)
+
+  // Configurar o transporte do nodemailer (configure de acordo com seu serviço de e-mail)
+  const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: 'moedaestudantil@gmail.com',
+      pass: 'ttpk hrde yqoz qaoa',
+    },
+  });
+
+  // Definir detalhes do e-mail
+  const mailOptions = {
+    from: 'moedaestudantil@gmail.com',
+    to: destinatario,
+    subject: assunto,
+    text: corpo,
+  };
+
+  // Enviar e-mail
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      console.error(error);
+      res.status(500).json({ tipo: 'Erro ao enviar o e-mail' });
+    } else {
+      console.log('E-mail enviado: ' + info.response);
+      res.json({ tipo: 'E-mail enviado com sucesso' });
+    }
+  });
 });
