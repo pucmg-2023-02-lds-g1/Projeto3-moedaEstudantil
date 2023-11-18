@@ -36,6 +36,32 @@ app.listen(PORT, function (err) {
   console.log("Server listening on Port", PORT);
 })
 
+const nodemailer = require("nodemailer");
+const user = "pedro.ramos@incentivecoinscoins.com"
+const pass = "PePe@1204@123"
+
+app.get('/send', (req, res) => {
+
+      const transporter = nodemailer.createTransport({
+        host: "smtp.umbler.com",
+        port: 587,
+        secure: false,
+        auth: {user, pass}
+      })
+
+      transporter.sendMail({
+        from: user,
+        to: user,
+        subject: "oi",
+        text: "oi"
+      }).then(info => {
+        res.send(info)
+      }).catch(error => {
+        res.send(error)
+      })
+})
+
+
 // ROTES
 app.post("/cadastro", function (req, res) {
   connection.query(
