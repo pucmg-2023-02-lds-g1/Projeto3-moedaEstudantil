@@ -691,18 +691,15 @@ app.post("/pegarMoedas", function (req, res) {
 app.post('/enviar-email', async (req, res) => {
   const { destinatario, assunto, corpo } = req.body;
 
-  console.log(assunto)
-
-  // Configurar o transporte do nodemailer (configure de acordo com seu serviço de e-mail)
+  
   const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
       user: 'moedaestudantil@gmail.com',
-      pass: 'ttpk hrde yqoz qaoa',
+      pass: 'ttpk hrde yqoz qaoa',    //NAO ALTERAR ESSE CAMPO
     },
   });
 
-  // Definir detalhes do e-mail
   const mailOptions = {
     from: 'moedaestudantil@gmail.com',
     to: destinatario,
@@ -710,7 +707,6 @@ app.post('/enviar-email', async (req, res) => {
     text: corpo,
   };
 
-  // Enviar e-mail
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
       console.error(error);
