@@ -1,18 +1,18 @@
-const { connection } = require("../../server");
+import { connection } from "../../server";
 const execute = function (req, res) {
-    connection.query(`SELECT * FROM Professor;`,
-      (err, rows, fields) => {
-        if (err) {
-          return res.json({
-            tipo: "Erro ao retornar dados do Professor",
-            mensagem: err
-          })
-        }
-  
-        return res.json({
-          empresas: rows
-        })
-      })
-  }
+  connection.query(`SELECT * FROM Professor;`, (err, rows, fields) => {
+    if (err) {
+      return res.json({
+        tipo: "Erro ao retornar dados do Professor",
+        mensagem: err,
+      });
+    }
+
+    return res.json({
+      empresas: rows,
+    });
+  });
+};
 
 module.exports = execute;
+

@@ -1,20 +1,23 @@
-const { connection } = require("../../server");
+import { connection } from "../../server";
 const execute = function (req, res) {
-    connection.query(`UPDATE empresa SET nome = "${req.body.nome}", cnpj = "${req.body.cnpj}", email = "${req.body.email}", senha = "${req.body.senha}" WHERE id = ${req.body.id};`,
-      (err, rows, fields) => {
-        if (err) {
-          return res.json({
-            tipo: "Erro de alteração",
-            mensagem: err
-          })
-        }
-  
+  connection.query(
+    `UPDATE empresa SET nome = "${req.body.nome}", cnpj = "${req.body.cnpj}", email = "${req.body.email}", senha = "${req.body.senha}" WHERE id = ${req.body.id};`,
+    (err, rows, fields) => {
+      if (err) {
         return res.json({
-          tipo: "Sucesso!",
-          mensagem: "Usuario alterado",
-          s: "funcionando"
-        })
-      })
-  }
+          tipo: "Erro de alteração",
+          mensagem: err,
+        });
+      }
 
-  module.exports = execute;
+      return res.json({
+        tipo: "Sucesso!",
+        mensagem: "Usuario alterado",
+        s: "funcionando",
+      });
+    },
+  );
+};
+
+module.exports = execute;
+
