@@ -3,5 +3,24 @@
     "form-data": "^4.0.0",
     "mailgun.js": "^9.3.0",
     "nodemailer": "^6.9.7"
-  }
+  },
+  "name": "projeto3-moedaestudantil",
+  "description": "Nesse projeto temos o objetivo de fazer um sistema para estimular o reconhecimento do mérito estudantil através de uma moeda virtual usando a linguagem JavaScript.",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/viniciusg23/Projeto3-moedaEstudantil.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/viniciusg23/Projeto3-moedaEstudantil/issues"
+  },
+  "homepage": "https://github.com/viniciusg23/Projeto3-moedaEstudantil#readme"
 }
