@@ -1,5 +1,12 @@
 import { connection } from "../../server";
+
+/**
+ * Executa uma consulta no banco de dados para atualizar as informações de um aluno com base no ID fornecido.
+ * @param {Object} req - O objeto de requisição.
+ * @param {Object} res - O objeto de resposta.
+ */
 const execute = function (req, res) {
+  // Executa a consulta no banco de dados
   connection.query(
     `UPDATE aluno SET nome = "${req.body.nome}", cpf = "${
       req.body.cpf
@@ -11,6 +18,7 @@ const execute = function (req, res) {
       req.body.id
     };`,
     (err, rows, fields) => {
+      // Trata quaisquer erros que ocorram durante a consulta
       if (err) {
         return res.json({
           tipo: "Erro de alteração",
@@ -18,6 +26,7 @@ const execute = function (req, res) {
         });
       }
 
+      // Retorna uma mensagem de sucesso
       return res.json({
         tipo: "Sucesso!",
         mensagem: "Usuario alterado",
@@ -27,5 +36,5 @@ const execute = function (req, res) {
   );
 };
 
+// Exporta a função execute
 module.exports = execute;
-

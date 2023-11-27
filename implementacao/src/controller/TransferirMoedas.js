@@ -1,4 +1,10 @@
 import { connection } from "../../server";
+
+/**
+ * Executa uma consulta no banco de dados para transferir moedas de um professor para um aluno.
+ * @param {Object} req - O objeto de requisição.
+ * @param {Object} res - O objeto de resposta.
+ */
 const execute = function (req, res) {
   console.log("cheguei aki");
   const { professorId, alunoId, quantidade, descricao } = req.body;
@@ -46,5 +52,5 @@ const execute = function (req, res) {
   });
 };
 
+// Exporta a função execute
 module.exports = execute;
-

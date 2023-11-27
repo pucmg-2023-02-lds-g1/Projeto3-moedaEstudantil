@@ -1,5 +1,10 @@
 import nodemailer from "nodemailer";
 
+/**
+ * Envia um e-mail usando o Nodemailer.
+ * @param {Object} req - O objeto de requisição.
+ * @param {Object} res - O objeto de resposta.
+ */
 const execute = async function (req, res) {
   const { destinatario, assunto, corpo } = req.body;
 
@@ -30,4 +35,3 @@ const execute = async function (req, res) {
 };
 
 module.exports = execute;
-
