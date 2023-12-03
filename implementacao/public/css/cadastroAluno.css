@@ -15,15 +15,17 @@ form {
 .btn-primary {
     width: 150px !important;
 }
-.form-group {
+
+.form-group, .btn_cadastrar, .btn_inicio {
     display: flex;
+}
+
+.form-group {
     align-items: center;
 }
 .btn_cadastrar {
-    display: flex;
     justify-content: center
 }
 .btn_inicio {
-    display: flex;
-    background-color: black;
+    background-color: #000;
 }
