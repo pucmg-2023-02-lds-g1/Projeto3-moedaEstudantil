@@ -26,40 +26,39 @@ async function updateAluno() {
     }
   }
 
-function viewAluno() {
+  async function viewAluno() {
     let id = sessionStorage.getItem("usuario")
     if (id) {
         id = JSON.parse(id).id
     }
 
-    let nome = "", cpf = "", email = "", endereco = "", instituicao = "", curso = "", moeda = "", senha = "";
+    try {
+        const response = await fetch(`http://localhost:3000/viewAluno`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ id })
+        });
 
-    fetch(`http://localhost:3000/viewAluno`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-            id
-        })
-    }).then(function (res) {
-        res.json().then(function (data) {
-            if (!data.aluno) {
-                window.alert(`${data.tipo} - ${data.mensagem}`)
-                window.location.reload();
-            } else {
-                nome = data.aluno.nome, cpf = data.aluno.cpf, email = data.aluno.email, senha = data.aluno.senha, endereco = data.aluno.endereco, instituicao = data.aluno.instituicao, curso = data.aluno.curso, moeda = data.aluno.moeda;
-            }
+        const data = await response.json();
 
-            document.getElementById("nome").value = nome
-            document.getElementById("cpf").value = cpf
-            document.getElementById("email").value = email
-            document.getElementById("senha").value = senha
-            document.getElementById("endereco").value = endereco
-            document.getElementById("instituicao").value = instituicao
-            document.getElementById("curso").value = curso
-            document.getElementById("moeda").value = moeda
-        })
-    })
+        if (!data.aluno) {
+            window.alert(`${data.tipo} - ${data.mensagem}`);
+            window.location.reload();
+        } else {
+            const { nome, cpf, email, senha, endereco, instituicao, curso, moeda } = data.aluno;
 
+            document.getElementById("nome").value = nome;
+            document.getElementById("cpf").value = cpf;
+            document.getElementById("email").value = email;
+            document.getElementById("senha").value = senha;
+            document.getElementById("endereco").value = endereco;
+            document.getElementById("instituicao").value = instituicao;
+            document.getElementById("curso").value = curso;
+            document.getElementById("moeda").value = moeda;
+        }
+    } catch (error) {
+        console.error('Error:', error);
+    }
 }
 
 function deletarAluno() {
