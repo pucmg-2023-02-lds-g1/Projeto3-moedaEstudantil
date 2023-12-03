@@ -1,8 +1,9 @@
-html {
+html, .form-group, .btn_cadastrar, .btn_inicio {
     display: flex;
+}
+
+html {
     flex-direction: row;
-    justify-content: center;
-    align-items: center;
     height: 100%;
 }
 
@@ -16,14 +17,10 @@ form {
     width: 150px !important;
 }
 
-.form-group, .btn_cadastrar, .btn_inicio {
-    display: flex;
-}
-
-.form-group {
+.form-group, html {
     align-items: center;
 }
-.btn_cadastrar {
+.btn_cadastrar, html {
     justify-content: center
 }
 .btn_inicio {
