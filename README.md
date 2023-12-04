@@ -1,3 +1,5 @@
+  ## (Fork para refatoração do Grupo 4) 
+
 # Projeto3-moedaEstudantil
 Nesse projeto temos o objetivo de fazer um sistema para estimular o reconhecimento do mérito estudantil através de uma moeda virtual usando a linguagem JavaScript.
 
@@ -35,3 +37,4 @@ Nesse projeto temos o objetivo de fazer um sistema para estimular o reconhecimen
       * The solution is:  2
     * Com tudo funcionando, abra no seu browser o link http://localhost:3000/ e pode utilizar o site
     * Caso tenha dúvidas, envie um email para amanda.souza.1381861@sga.pucminas.br
+

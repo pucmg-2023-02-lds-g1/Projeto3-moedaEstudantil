@@ -1,77 +1,48 @@
-/* body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f0f0f0;
-}
-
-h1 {
-    color: #333;
-    text-align: center;
-}
-
-.p-2 {
-    padding: 2rem;
-}
-
-#empresas, #alunos{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-}
-
-#empresas p, #alunos p {
-    background-color: #fff;
-    border-radius: 5px;
-    padding: 1rem;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-} */
-
-
 html {
-    display: flex;
     flex-direction: row;
     justify-content: center;
     height: 100%;
     margin-top: 80px;
 }
+
 .caixa_info {
     width: 400px;
     height: 200px;
-    padding: 15px;
-    margin: 10px;
-    background-color: rgb(168, 194, 218);
-    border: 1px solid rgb(93, 106, 119); 
 }
+
 #empresas .caixa_info {
     width: 320px;
     height: 150px;
+}
+
+p {
+    margin: 0px;
+}
+
+.dados {
+    padding: 10px;
+}
+
+.nome {
+    font-size: larger;
+}
+
+.nome_pag_inicio {
+    margin-left: 10%;
+}
+
+#alunos, #empresas {
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+html, #alunos, #empresas {
+    display: flex;
+}
+
+.caixa_info, #empresa .caixa_info{
     padding: 15px;
     margin: 10px;
     background-color: rgb(168, 194, 218);
     border: 1px solid rgb(93, 106, 119); 
-}
-p {
-    margin: 0px;
-}
-.dados {
-    padding: 10px;
-}
-.nome {
-    font-size: larger;
-}
-.nome_pag_inicio {
-    margin-left: 10%;
-}
-#alunos {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-#empresas {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
 }

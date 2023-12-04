@@ -1,69 +1,64 @@
-function updateAluno() {
+async function updateAluno() {
+    const { id } = JSON.parse(sessionStorage.getItem("usuario")) || {};
+    const { value: nome } = document.getElementById("nome");
+    const { value: cpf } = document.getElementById("cpf");
+    const { value: email } = document.getElementById("email");
+    const { value: senha } = document.getElementById("senha");
+    const { value: endereco } = document.getElementById("endereco");
+    const { value: instituicao } = document.getElementById("instituicao");
+    const { value: curso } = document.getElementById("curso");
+  
+    try {
+      const response = await fetch('http://localhost:3000/updateAluno', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: { id, nome, cpf, email, senha, endereco, instituicao, curso }
+      });
+  
+      const data = await response.json();
+      window.alert(`${data.tipo} - ${data.mensagem}`);
+      if (data.s) {
+        window.location.reload();
+      }
+    } catch (error) {
+      console.error(error);
+      window.alert('Ocorreu um erro ao atualizar o aluno');
+    }
+  }
+
+  async function viewAluno() {
     let id = sessionStorage.getItem("usuario")
     if (id) {
         id = JSON.parse(id).id
     }
 
-    let nome, cpf, email, endereco, instituicao, curso, senha;
+    try {
+        const response = await fetch(`http://localhost:3000/viewAluno`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ id })
+        });
 
-    nome = document.getElementById("nome").value
-    cpf = document.getElementById("cpf").value
-    email = document.getElementById("email").value
-    senha = document.getElementById("senha").value
-    endereco = document.getElementById("endereco").value
-    instituicao = document.getElementById("instituicao").value
-    curso = document.getElementById("curso").value
+        const data = await response.json();
 
-    fetch(`http://localhost:3000/updateAluno`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-            id, nome, cpf, email, endereco, instituicao, curso, senha
-        })
-    }).then(function (res) {
-        res.json().then(function (data) {
-            window.alert(`${data.tipo} - ${data.mensagem}`)
-            if (data.s) {
-                window.location.reload();
-            }
-        })
-    })
-}
+        if (!data.aluno) {
+            window.alert(`${data.tipo} - ${data.mensagem}`);
+            window.location.reload();
+        } else {
+            const { nome, cpf, email, senha, endereco, instituicao, curso, moeda } = data.aluno;
 
-function viewAluno() {
-    let id = sessionStorage.getItem("usuario")
-    if (id) {
-        id = JSON.parse(id).id
+            document.getElementById("nome").value = nome;
+            document.getElementById("cpf").value = cpf;
+            document.getElementById("email").value = email;
+            document.getElementById("senha").value = senha;
+            document.getElementById("endereco").value = endereco;
+            document.getElementById("instituicao").value = instituicao;
+            document.getElementById("curso").value = curso;
+            document.getElementById("moeda").value = moeda;
+        }
+    } catch (error) {
+        console.error('Error:', error);
     }
-
-    let nome = "", cpf = "", email = "", endereco = "", instituicao = "", curso = "", moeda = "", senha = "";
-
-    fetch(`http://localhost:3000/viewAluno`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-            id
-        })
-    }).then(function (res) {
-        res.json().then(function (data) {
-            if (!data.aluno) {
-                window.alert(`${data.tipo} - ${data.mensagem}`)
-                window.location.reload();
-            } else {
-                nome = data.aluno.nome, cpf = data.aluno.cpf, email = data.aluno.email, senha = data.aluno.senha, endereco = data.aluno.endereco, instituicao = data.aluno.instituicao, curso = data.aluno.curso, moeda = data.aluno.moeda;
-            }
-
-            document.getElementById("nome").value = nome
-            document.getElementById("cpf").value = cpf
-            document.getElementById("email").value = email
-            document.getElementById("senha").value = senha
-            document.getElementById("endereco").value = endereco
-            document.getElementById("instituicao").value = instituicao
-            document.getElementById("curso").value = curso
-            document.getElementById("moeda").value = moeda
-        })
-    })
-
 }
 
 function deletarAluno() {

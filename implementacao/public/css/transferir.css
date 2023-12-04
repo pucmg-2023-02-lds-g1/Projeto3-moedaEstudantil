@@ -1,56 +1,51 @@
 form {
     margin-top: 80px;
 }
-/* html {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    height: 100%;
-    margin-top: 80px;
-} */
+
 #alunos_do_professor {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
 }
+
 .card {
     background-color: rgb(168, 194, 218);
     margin: 15px;
     border-radius: 0px;
     border: 1px solid rgb(93, 106, 119); 
 }
+
+.input_val, .input_desc {
+    border-radius: 10px;
+    border-width: 0px;
+    margin-left: 5px;
+    border: 1px solid rgb(93, 106, 119);
+}
+
 .input_val {
     width: 60px;
-    border-radius: 10px;
-    border-width: 0px;
-    margin-left: 5px;
-    border: 1px solid rgb(93, 106, 119);
 }
+
 .input_desc {
     width: 160px;
-    border-radius: 10px;
-    border-width: 0px;
-    margin-left: 5px;
-    border: 1px solid rgb(93, 106, 119);
 }
+
 .card-text {
     margin-bottom: 5px;
 }
+
 .btn_box {
     display: flex;
     justify-content: center;
     margin-top: 20px;
 }
+
 .btn {
     display: flex;
     justify-content: center;
     width: 100px;
 }
-#alunos_do_professor {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
+
 .dados_pagina {
     margin-left: 10%;
 }
